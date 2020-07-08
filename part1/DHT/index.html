@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part1/DHT/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Sensor - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../LED/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../IOTCLOUD/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part1/DHT.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#reading-the-dht-sensor-from-the-esp8266" class="nav-link">Reading the DHT Sensor from the ESP8266</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="reading-the-dht-sensor-from-the-esp8266">Reading the DHT Sensor from the ESP8266</h1>
+<p>The DHT11 or DHT22 sensors add the ability to sense temperature and humidity.  The DHT22 is a more accurate version of the DHT11.</p>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this lab you will learn how to connect the DHT temperature and humidity sensor to the ESP8266 board and how to access data from the sensor.  You will learn:</p>
+<ul>
+<li>The electrical connections needed to connect the DHT sensor to the ESP8266</li>
+<li>The library used to access the features of the sensor</li>
+<li>How to use the library functions to add a DHT sensor to an application</li>
+</ul>
+<h3 id="step-1-installing-the-library">Step 1 - Installing the Library</h3>
+<p>To access the DHT sensors from the ESP8266 we need to add 2 libraries to the sketch, so back in the Arduino IDE access the library manager.  <em>Sketch</em> -&gt; <em>Include Library</em> -&gt; <em>Manage Libraries...</em>.  </p>
+<ul>
+<li>Once in the Library Manager search for DHT.  The top entry should be the Adafruit <strong>DHT sensor library</strong> which you should install.</li>
+<li>Adafruit have introduced a unified model to many of their sensor libraries, including the DHT library, and to use them you need to install the <strong>Adafruit Unified Sensor</strong> library, so search for it, it will appear at the bottom of the list, then install it.</li>
+</ul>
+<p>When both of the libraries have been installed you can close the library manager.</p>
+<h3 id="step-2-connect-the-dht-sensor-to-your-esp8266-board">Step 2 - Connect the DHT sensor to your ESP8266 board</h3>
+<p>Disconnect the ESP*266 board from your laptop/workstation before connecting the DHT sensor.</p>
+<p>The DHT sensors have 4 connecting pins.  When looking at the front of the sensor (mesh case) with the pins at the bottom, the connections are (left to right):</p>
+<ul>
+<li>+'ve voltage</li>
+<li>Data</li>
+<li>Not used</li>
+<li>Ground</li>
+</ul>
+<p><img alt="ModeMCU DHT Wiring" src="../../images/NodeMCU_DHT.jpg" /></p>
+<p>If you have a DHT mounted on a module then you need to check the pinout, usually indicated on the board, with <strong>+</strong> (to 3V pin), <strong>-</strong> (to G pin) and <strong>out</strong> or <strong>data</strong> (to D2 pin):</p>
+<p><img alt="DHT module" src="../../images/DHTmodule.png" /></p>
+<h3 id="step-3-load-an-example-sketch-showing-how-to-use-the-dht-sensor">Step 3 - Load an example sketch showing how to use the DHT sensor</h3>
+<p>To see how to use the DHT sensor there is an example sketch.  <em>File</em> -&gt; <em>Examples</em> -&gt; <em>DHT Sensor Library</em> -&gt; <em>DHTtester</em>.  You need to make a couple of changes before you can run the sketch:</p>
+<ol>
+<li>Update the DHTPIN to the correct GPIO pin on the ESP8266 corresponding to D2 on the NodeMCU board.  The <a href="https://circuits4you.com/2017/12/31/nodemcu-pinout/">pinout</a> diagram will tell you that you need GPIO 4.</li>
+<li>Set the DHT type.  If you are using DHT11 sensors (blue), uncomment the DHT11 line and comment out the DHT22 line.</li>
+</ol>
+<p>When you save the sketch you will need to save it to your Arduino directory as you can't modify the example source.  Once saved you can now compile and upload the sketch.  This sketch uses Serial output to print out the values read, so you will need to open the Serial monitor and set the baud rate to match the Serial.begin() line in the sketch = 9600.</p>
+<h3 id="step-4-understanding-the-dht-sensor-library">Step 4 - Understanding the DHT sensor library</h3>
+<p>To add the DHT sensor to your own application you need to do the following:</p>
+<ol>
+<li>Create an instance of DHT : <code>DHT dht(DHTPIN, DHTTYPE);</code><ul>
+<li>The first parameter is the GPIO the data pin is connected to</li>
+<li>the second parameter is the type of sensor</li>
+</ul>
+</li>
+<li>Before using and commands to read the sensor you need to initialise the sensor library using the <strong>begin()</strong> call.  <code>dht.begin();</code>  This is usually done in the <strong>setup()</strong> function.</li>
+<li>Read the sensor required using one of the library functions:<ul>
+<li><em>Note: by default temp is in C, but you can request to get a Fahrenheit temperature.</em></li>
+<li><code>dht.readTemperature()</code></li>
+<li><code>dht.readTemperature(bool isFahrenheit)</code></li>
+<li><code>dht.readHumidity()</code></li>
+</ul>
+</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

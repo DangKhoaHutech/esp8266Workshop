@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part2/APP/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Creating the ESP8266 Application - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part1/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../DEVICE/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../MQTT/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part2/APP.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#creating-the-sensing-application-for-the-esp8266" class="nav-link">Creating the sensing application for the ESP8266</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="creating-the-sensing-application-for-the-esp8266">Creating the sensing application for the ESP8266</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this lab you will pull together all the information from part 1 into a single app.  You will learn:</p>
+<ul>
+<li>How to create a new sketch and some recommendations for app structure</li>
+<li>How to combine the WiFi, neopixel and DHT libraries into a single application</li>
+<li>How to work with JSON data on the ESP8266</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>In part 1 you looked at a number of example sketches to see how the WiFi, NeoPixel LED and DHT sensors work with Arduino.  Now you will create an application combining all the features then as we work through the remainder of this part you will connect the device to the IoT platform and add code to send data to the platform and receive commands from the platform.  Initially you will use unsecured MQTT connections, then at the end of this section you will add SSL/TLS and certificate verification to secure the communication.</p>
+<h3 id="step-1-create-a-new-sketch">Step 1 - Create a new sketch</h3>
+<p>Create a new sketch in the Arduino IDE using <em>File</em> -&gt; <em>New</em> or the icon in the tool bar.  The save the sketch <em>File</em> -&gt; <em>Save</em> and name the sketch, suggested name <strong>esp8266Workshop</strong>.</p>
+<p>You need to add 1 more library to the Arduino IDE to provide functions to handle the JSON data format.  When we start sending and receiving data from the IoT Platform the JSON data format will be used, so we can start using JSON now.  In the Library Manager (<em>Sketch</em> -&gt; <em>Include Library</em> -&gt; <em>Manage Libraries...</em>) search for <strong>ArduinoJson</strong> and install the latest version of the library.  <strong>Note: You must have the latest version (6.x or higher) as the API changed from v5 to v6, so this code will not compile with v5 or earlier</strong></p>
+<h3 id="step-2-input-the-application-code">Step 2 - Input the application code</h3>
+<p>I've provided the code for the application below.  As you enter it (or cut and paste it) please take time to ensure you understand the application and what each of the library function calls do.</p>
+<p>Add the code below to the sketch above the <strong>setup()</strong> function:</p>
+<pre><code class="C++">#include &lt;ESP8266WiFi.h&gt;
+#include &lt;Adafruit_NeoPixel.h&gt;
+#include &lt;DHT.h&gt;
+#include &lt;ArduinoJson.h&gt;
+
+// --------------------------------------------------------------------------------------------
+//        UPDATE CONFIGURATION TO MATCH YOUR ENVIRONMENT
+// --------------------------------------------------------------------------------------------
+
+// Add GPIO pins used to connect devices
+#define RGB_PIN 5 // GPIO pin the data line of RGB LED is connected to
+#define DHT_PIN 4 // GPIO pin the data line of the DHT sensor is connected to
+
+// Specify DHT11 (Blue) or DHT22 (White) sensor
+#define DHTTYPE DHT11
+#define NEOPIXEL_TYPE NEO_RGB + NEO_KHZ800
+
+// Temperatures to set LED by (assume temp in C)
+#define ALARM_COLD 0.0
+#define ALARM_HOT 30.0
+#define WARN_COLD 10.0
+#define WARN_HOT 25.0
+
+
+// Add WiFi connection information
+char ssid[] = &quot;XXXX&quot;;  // your network SSID (name)
+char pass[] = &quot;YYYY&quot;;  // your network password
+
+
+// --------------------------------------------------------------------------------------------
+//        SHOULD NOT NEED TO CHANGE ANYTHING BELOW THIS LINE
+// --------------------------------------------------------------------------------------------
+Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1, RGB_PIN, NEOPIXEL_TYPE);
+DHT dht(DHT_PIN, DHTTYPE);
+
+// variables to hold data
+StaticJsonDocument&lt;100&gt; jsonDoc;
+JsonObject payload = jsonDoc.to&lt;JsonObject&gt;();
+JsonObject status = payload.createNestedObject(&quot;d&quot;);
+static char msg[50];
+
+float h = 0.0; // humidity
+float t = 0.0; // temperature
+unsigned char r = 0; // LED RED value
+unsigned char g = 0; // LED Green value
+unsigned char b = 0; // LED Blue value
+
+</code></pre>
+
+<p>The above code isolates all the configuration that may need to change.  I prefer to put all the config up front in an app, so it is easy to update as needed.  You will need to update the WiFI SSID and password to the WiFi network you want to connect to.  This should be available in the venue you are working in.</p>
+<p>Add the following code to the <strong>setup()</strong> function:</p>
+<pre><code class="C++">void setup()
+{
+  // Start serial console
+  Serial.begin(115200);
+  Serial.setTimeout(2000);
+  while (!Serial) { }
+  Serial.println();
+  Serial.println(&quot;ESP8266 Sensor Application&quot;);
+
+  // Start WiFi connection
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, pass);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(&quot;.&quot;);
+  }
+  Serial.println(&quot;&quot;);
+  Serial.println(&quot;WiFi Connected&quot;);
+
+  // Start connected devices
+  dht.begin();
+  pixel.begin();
+}
+</code></pre>
+
+<p>This function initialises the Serial port, the WiFi connection, the LED and the DHT sensor.</p>
+<p>The loop function should contain:</p>
+<pre><code class="C++">void loop()
+{
+  h = dht.readHumidity();
+  t = dht.readTemperature(); // uncomment this line for Celsius
+  // t = dht.readTemperature(true); // uncomment this line for Fahrenheit
+
+  // Check if any reads failed and exit early (to try again).
+  if (isnan(h) || isnan(t)) {
+    Serial.println(&quot;Failed to read from DHT sensor!&quot;);
+  } else {
+    // Set RGB LED Colour based on temp
+    b = (t &lt; ALARM_COLD) ? 255 : ((t &lt; WARN_COLD) ? 150 : 0);
+    r = (t &gt;= ALARM_HOT) ? 255 : ((t &gt; WARN_HOT) ? 150 : 0);
+    g = (t &gt; ALARM_COLD) ? ((t &lt;= WARN_HOT) ? 255 : ((t &lt; ALARM_HOT) ? 150 : 0)) : 0;
+    pixel.setPixelColor(0, r, g, b);
+    pixel.show();
+
+    // Print Message to console in JSON format
+    status[&quot;temp&quot;] = t;
+    status[&quot;humidity&quot;] = h;
+    serializeJson(jsonDoc, msg, 50);
+    Serial.println(msg);
+  }
+  delay(10000);
+}
+</code></pre>
+
+<p>This code is called repeatedly after the <strong>setup()</strong> function returns.  It reads the humidity and temperature for the DHT sensor, validates it received the readings then sets the LED colour to the correct colour based on the temperature and the alert and warning temperatures defined in the constants at the top of the application.  Finally the temperature and humidity values are added to the JSON object, which is then converted to a string buffer and printed to the console.</p>
+<h3 id="step-3-run-the-code-and-view-output-using-the-serial-monitor">Step 3 - Run the code and view output using the Serial Monitor</h3>
+<p>Save, compile and upload the sketch.  Once uploaded open up the Serial Monitor and set the baud rate to 115200, to match the rate set in the Serial.begin(115200) message.  You should see the confirmation that the WiFi connection has been made and then you should see the sensor data formatted as a JSON string, repeating every 10 seconds (10000 milliseconds).</p>
+<p>The LED should also be set to a colour based on the temperature and the WARN and ALARM constants defined at the top of the sketch :</p>
+<ul>
+<li>BLUE (below ALARM_COLD)</li>
+<li>TURQUOISE (between ALARM_COLD and WARM_COLD)</li>
+<li>GREEN (between WARN_COLD and WARN_HOT)</li>
+<li>YELLOW (between WARN_HOT and ALARM_HOT)</li>
+<li>RED (above ALARM_HOT)</li>
+</ul>
+<h3 id="step-4-understanding-how-to-work-with-json-data">Step 4 - Understanding how to work with JSON data</h3>
+<p>JSON format is widely used for APIs and data exchange between systems.  The above sketch uses one of the optimised JSON libraries for small memory devices.  To use the library you need to:</p>
+<ol>
+<li>Initialise the library and allocate some memory for the library to work with : <code>StaticJsonDocument&lt;100&gt; jsonDoc;</code></li>
+<li>Create a new, empty JSON object : <code>JsonObject payload = jsonDoc.to&lt;JsonObject&gt;();</code></li>
+<li>
+<p>Add required properties using one of the available functions:</p>
+<p><code>C++
+JsonObject status = payload.createNestedObject("d");
+status["temp"] = t;
+status["humidity"] = h;</code></p>
+</li>
+</ol>
+<p>The <strong>serializeJson()</strong> function converts the JSON object to a string and writes it into the provided buffer, so it can be used as a c-string.</p>
+<p>See the library <a href="https://arduinojson.org/v6/doc/">documentation</a> for additional functionality.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

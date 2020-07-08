@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part4/TRAINING/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Create Training Data - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part1/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../STUDIO/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../JUPYTER/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part4/TRAINING.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#create-training-data" class="nav-link">Create training data</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#node-red-flow-to-create-the-training-data" class="nav-link">Node-RED flow to create the training data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#creating-the-training-data" class="nav-link">Creating the training data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#reset-the-training-database" class="nav-link">Reset the training database</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this section we will create the training data needed to train a model.  You will learn:</p>
+<ul>
+<li>How to format data into an appropriate format for training</li>
+<li>How to capture the data required to create the data model</li>
+<li>How to reset the database if invalid data has been captured</li>
+</ul>
+<h1 id="create-training-data">Create training data</h1>
+<p>To train the model we need to identify 2 different situations:</p>
+<ul>
+<li>the DHT sensor is not being held</li>
+<li>the DHT sensor is being held in a closed hand</li>
+</ul>
+<p>It is important to ensure the training data is of good quality, so we are going to create a new database to hold the training database and carefully manage what data is added to the training database.</p>
+<p>The database we need to create needs to have the following contents:</p>
+<ul>
+<li>index.  This is a unique index for each record.  We can use a timestamp for this field</li>
+<li>class.  This is an indication of which training class this data point represents.  0 for not held and 1 for held</li>
+<li>temperature.  The temperature value</li>
+<li>humidity.  The humidity value</li>
+</ul>
+<p>To get the data into the database we will create a Node-RED flow, but will only connect up the database when we want data to be recorded.</p>
+<h2 id="node-red-flow-to-create-the-training-data">Node-RED flow to create the training data</h2>
+<p>To create the flow, open up the Node-RED editor running on the IBM Cloud (as used in part 3 of this workshop).</p>
+<ol>
+<li>Create a new tab in the editor then add the following nodes:</li>
+<li><strong>mqtt in</strong> node from the input section of the palette</li>
+<li><strong>change</strong> node from the function section of the palette</li>
+<li><strong>debug</strong> node from the output section of the palette</li>
+<li><strong>cloudant out</strong> node from the storage section of the palette</li>
+<li>Connect the <strong>mqtt in</strong> node to the <strong>change</strong> node and then the <strong>change</strong> node to the <strong>debug</strong> node.  DO NOT connect the <strong>cloudant out</strong> node yet.</li>
+<li>Configure the <strong>mqtt in</strong> node to use the previously defined server configuration and set the topic to listen to all JSON data from all devices <code>iot-2/type/+/id/+/evt/+/fmt/json</code> as shown: <img alt="nodered ibmiot node config" src="../screenshots/nr-mqtt-config.png" /></li>
+<li>Configure the <strong>change</strong> node to have 2 set rules.  The first rule reformats the data received from the IoT platform, to flatten it and add a timestamp.  The second rule adds the class property and initially sets it to class 0:</li>
+<li>set msg.payload to JSONata expression <code>msg.payload.{"time" : $millis(),"temp" : d.temp, "humidity" : d.humidity}</code></li>
+<li>set msg.payload.class to number 0<br />
+   as shown : <img alt="nodered change node config" src="../screenshots/nr-change-config.png" /></li>
+<li>Configure the <strong>cloudant out</strong> node to use the cloud service and set the database name to training and ensure the operation is set to insert and to only store msg.payload object as shown: <img alt="nodered cloudant out node config" src="../screenshots/nr-cloudant-config.png" /></li>
+</ol>
+<p>You should have a flow that looks like this: <img alt="nodered flow" src="../screenshots/nr-flow.png" /></p>
+<p>If your flow is not working then you can import the sample flow, which is also available in the <a href="flows">flows</a> folder in part4 of the repo :</p>
+<pre><code class="JSON">[{&quot;id&quot;:&quot;332d48ae.1555b&quot;,&quot;type&quot;:&quot;change&quot;,&quot;z&quot;:&quot;46c77ae0.25061c&quot;,&quot;name&quot;:&quot;&quot;,&quot;rules&quot;:[{&quot;t&quot;:&quot;set&quot;,&quot;p&quot;:&quot;payload&quot;,&quot;pt&quot;:&quot;msg&quot;,&quot;to&quot;:&quot;msg.payload.{\&quot;time\&quot; : $millis(), \&quot;temp\&quot; : d.temp, \&quot;humidity\&quot; : d.humidity} &quot;,&quot;tot&quot;:&quot;jsonata&quot;},{&quot;t&quot;:&quot;set&quot;,&quot;p&quot;:&quot;payload.class&quot;,&quot;pt&quot;:&quot;msg&quot;,&quot;to&quot;:&quot;0&quot;,&quot;tot&quot;:&quot;num&quot;}],&quot;action&quot;:&quot;&quot;,&quot;property&quot;:&quot;&quot;,&quot;from&quot;:&quot;&quot;,&quot;to&quot;:&quot;&quot;,&quot;reg&quot;:false,&quot;x&quot;:1040,&quot;y&quot;:260,&quot;wires&quot;:[[&quot;c5369a33.c87e08&quot;]]},{&quot;id&quot;:&quot;c5369a33.c87e08&quot;,&quot;type&quot;:&quot;debug&quot;,&quot;z&quot;:&quot;46c77ae0.25061c&quot;,&quot;name&quot;:&quot;&quot;,&quot;active&quot;:true,&quot;tosidebar&quot;:true,&quot;console&quot;:false,&quot;tostatus&quot;:false,&quot;complete&quot;:&quot;false&quot;,&quot;x&quot;:1210,&quot;y&quot;:300,&quot;wires&quot;:[]},{&quot;id&quot;:&quot;95115355.458a9&quot;,&quot;type&quot;:&quot;cloudant out&quot;,&quot;z&quot;:&quot;46c77ae0.25061c&quot;,&quot;name&quot;:&quot;&quot;,&quot;cloudant&quot;:&quot;&quot;,&quot;database&quot;:&quot;training&quot;,&quot;service&quot;:&quot;&quot;,&quot;payonly&quot;:true,&quot;operation&quot;:&quot;insert&quot;,&quot;x&quot;:1220,&quot;y&quot;:260,&quot;wires&quot;:[]},{&quot;id&quot;:&quot;b1eeaccd.78ca6&quot;,&quot;type&quot;:&quot;mqtt in&quot;,&quot;z&quot;:&quot;46c77ae0.25061c&quot;,&quot;name&quot;:&quot;&quot;,&quot;topic&quot;:&quot;iot-2/type/+/id/+/evt/+/fmt/json&quot;,&quot;qos&quot;:&quot;2&quot;,&quot;datatype&quot;:&quot;json&quot;,&quot;broker&quot;:&quot;&quot;,&quot;x&quot;:790,&quot;y&quot;:260,&quot;wires&quot;:[[&quot;332d48ae.1555b&quot;]]}]
+</code></pre>
+
+<p>This flow creates the following output, which we will write to the database:</p>
+<pre><code class="JSON">{
+    &quot;time&quot;:1546969694969,
+    &quot;temp&quot;:20,
+    &quot;humidity&quot;:51,
+    &quot;class&quot;:0
+}
+</code></pre>
+
+<h2 id="creating-the-training-data">Creating the training data</h2>
+<p>To create the training data you may want to use the interval dashboard to set the interval to something like 5 seconds, to reduce the time needed to gather the required data.  We are aiming to have a similar number of data points for each class in the training data.</p>
+<ol>
+<li>Ensure the ESP8266 is working and you can see the debug output as shown above.</li>
+<li>As we want to record class 0 data, leave the DHT sensor alone and wait 30 seconds to ensure the data is stable.  Then connect up the <strong>cloudant out</strong> node and deploy the flow: <img alt="flow collecting data" src="../screenshots/nr-flow-collecting.png" /></li>
+<li>Wait until about 20-30 records have been written then delete the connection to the <strong>cloudant out</strong> node and deploy the flow to stop any more records being written: <img alt="nodered flow" src="../screenshots/nr-flow-not-collecting.png" /></li>
+<li>Edit the <strong>change</strong> node configuration to set the class to 1 : <img alt="change class 1" src="../screenshots/nr-change-class-1.png" /></li>
+<li>Hold the DHT sensor in your hand, ensuring you don't dislodge any of the connecting cables.  Wait a while to let the readings settle down</li>
+<li>Connect the <strong>change</strong> node to the <strong>cloudant out</strong> node and deploy the flow.  Ensure you remain holding onto the DHT sensor</li>
+<li>Wait until about 20-30 records have been written <em>(try to get the same number of database records as you created for class 0)</em> then delete the connection to the <strong>cloudant out</strong> node and deploy to stop recording any more data.  You can release the DHT sensor now</li>
+</ol>
+<h2 id="reset-the-training-database">Reset the training database</h2>
+<p>Note : <strong>Don't do this unless you have invalid data in your training database</strong></p>
+<p>It is important that you have clean training data, so if you need to restart recording the training database you can easily delete the database from cloudant:</p>
+<ol>
+<li>Ensure the connection between the <strong>change</strong> node and the <strong>cloudant out</strong> node has been deleted, so no data is being written to the database</li>
+<li>From the Application overview page in the IBM Cloud console select the cloudant database from the connections section: <img alt="cloudant connection" src="../screenshots/connections-cloudant.png" /></li>
+<li>Select the alias link : <img alt="cloudant alias" src="../screenshots/cloudant-alias.png" /></li>
+<li>Launch the console : <img alt="launch console" src="../screenshots/cloudant-launch.png" /></li>
+<li>In the databases section select the bin icon next to the training database : <img alt="cloudant delete" src="../screenshots/cloudant-delete.png" /></li>
+<li>Enter the database name in the text box then press the delete button to delete the database : <img alt="confirm delete" src="../screenshots/cloudant-confirm-delete.png" /></li>
+</ol>
+<p>You can now start creating the training data again - the database is automatically created when the Node-RED flow is next deployed</p>
+<p>Once you have your training data recorded you can move to the <a href="../JUPYTER/">next section</a></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

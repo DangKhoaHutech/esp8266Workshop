@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part4/JUPYTER/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Jupyter Notebooks - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part1/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../TRAINING/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../MODEL/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part4/JUPYTER.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#run-a-jupyter-notebook-in-watson-studio" class="nav-link">Run a Jupyter Notebook in Watson Studio</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#step-1-cloudant-credentials" class="nav-link">Step 1 - Cloudant Credentials</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#step-3-work-with-the-training-data" class="nav-link">Step 3 - Work with the training data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#step-4-creating-the-binary-classifier-model" class="nav-link">Step 4 - Creating the binary classifier model</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#step-5-test-the-model" class="nav-link">Step 5 - Test the model</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#sample-solution" class="nav-link">Sample solution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="run-a-jupyter-notebook-in-watson-studio">Run a Jupyter Notebook in Watson Studio</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this lab you will read IoT data into a Watson Studio Project Jupyter Notebook and perform some analytics.  You will learn:</p>
+<ul>
+<li>How to use Jupyter Notebooks</li>
+<li>How to read data from a Cloudant DB into Spark</li>
+<li>How to manipulate the data within the notebook environment</li>
+<li>How to create a model to be able to classify the IoT data to determine what is happening.</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Jupyter Notebooks are a web-based computational environment for interactive data science and scientific computing. A Jupyter Notebook document is a JSON document, following a versioned schema, and containing an ordered list of input/output cells which can contain code, text (using Markdown), mathematics, plots and rich media, usually ending with the ".ipynb" extension. A Jupyter kernel is a program responsible for handling various types of request (code execution, code completions, inspection), and providing a reply.</p>
+<p>The steps below will build up the Jupyter notebook, there is a solution notebook at the end to use if you need assistance to complete any step.</p>
+<h2 id="step-1-cloudant-credentials">Step 1 - Cloudant Credentials</h2>
+<p>Before we can read the ESP8266 IoT temperature and humidity data into a Jupyter notebook we need to create credentials for the Cloudant database where the training data is stored.</p>
+<ul>
+<li>Open a new browser tab.</li>
+<li>Return to the <a href="https://cloud.ibm.com">IBM Cloud dashboard</a> and your IoT Starter application. <strong>Click</strong> on the cloudantNoSQLDB service connection (1). <img alt="Cloudant NoSQL Service Connection" src="../../part3/screenshots/CloudantNoSQLServiceConnection.png" /></li>
+<li>
+<p>Read about the Cloudant Storage service and click on the <strong>Service credentials</strong> menu item in the left menu bar. <img alt="Cloudant NoSQL Service Instance" src="../screenshots/cloudant-service.png" /></p>
+</li>
+<li>
+<p>Click on <strong>New credential</strong> <img alt="Cloudant NoSQL Service new" src="../screenshots/cloudant-credential.png" /></p>
+</li>
+<li>
+<p>Give your credential a name: <strong>Credentials-DSX</strong></p>
+</li>
+<li>Click on <strong>Add</strong></li>
+<li>Expand the <strong>View credentials</strong> twistie</li>
+<li>The Cloudant hostname, user and password credentials will be displayed.</li>
+<li>Keep this browser tab open or copy the credentials to your text editor, as you will use these credentials in the next Step.</li>
+</ul>
+<h3 id="step-2-loading-cloudant-data-into-the-jupyter-notebook">Step 2 - Loading Cloudant data into the Jupyter notebook</h3>
+<p>When using the lite account on the IBM Cloud there are some restrictions on services.  One restriction is a limit on the number of requests that can be run in a second (5 database actions per second).  To overcome this we need to ensure that data is extracted from Cloudant at a suitable rate, not to hit this limit.  The code below uses the <strong>Apache Bahir</strong> package to ensure this limit is not exceeded.</p>
+<ul>
+<li>
+<p>Return to the Watson Studio browser tab and open the <strong>IoT Sensor Analytics</strong> notebook. <img alt="Watson Studio Assets" src="../screenshots/WatsonStudio-Notebook-ESP8266.png" /></p>
+</li>
+<li>
+<p>Make certain you are in <strong>Edit</strong> mode by clicking on the Pencil icon. <img alt="Watson Studio Edit mode" src="../screenshots/WatsonStudio-Notebook-edit.png" /></p>
+</li>
+<li>
+<p>Copy the following code into the first cell in the notebook.</p>
+</li>
+</ul>
+<pre><code class="python">import pixiedust
+pixiedust.installPackage(&quot;org.apache.bahir:spark-sql-cloudant_2.11:0&quot;)
+
+</code></pre>
+
+<ul>
+<li>In the second and third cells, we will initialize the Spark session.</li>
+</ul>
+<pre><code class="python">from pyspark.sql import SparkSession
+</code></pre>
+
+<p>and</p>
+<pre><code class="python">spark = SparkSession.builder.getOrCreate()
+</code></pre>
+
+<ul>
+<li>Update the credentials with the values from your cloudant database credentials (created in <strong>step 1</strong>).  The values are from the host, username and password properties in the credentials:</li>
+</ul>
+<pre><code class="python">### TODO Please provide your Cloudant credentials in this cell
+def readDataFrameFromCloudant(database):
+
+  cloudantdata = spark.read.format(&quot;org.apache.bahir.cloudant&quot;)\
+    .option(&quot;cloudant.host&quot;,'XXXX-bluemix.cloudant.com')\
+    .option(&quot;cloudant.username&quot;, 'XXXX-bluemix')\
+    .option(&quot;cloudant.password&quot;,'XXXX')\
+    .load(database)
+
+  return cloudantdata
+</code></pre>
+
+<ul>
+<li>Press the <strong>Run</strong> button in the toolbar to run the cells <img alt="Run first cell" src="../screenshots/WatsonStudio-cell1.png" /></li>
+<li>Move the focus to the next cell and copy in the following python, which calls the function defined in the cell to load the data from Cloudant training database <em>(this assumes you used the database name </em><em>training</em>* when capturing training data, if not, modify the database name):</li>
+</ul>
+<pre><code class="python">df=readDataFrameFromCloudant('training')
+</code></pre>
+
+<p>Run the cell by pressing the run button in the toolbar.  You should see the data from the database.  You can validate that you have the correct data format by checking you have the <strong>class</strong>, <strong>humidity</strong>, <strong>index</strong> and <strong>temperature</strong> columns in the loaded data: <img alt="Load data in to notebook" src="../screenshots/WatsonStudio-cell2.png" /></p>
+<p>If you want to clear out the data created by previously run steps then you can use the <strong>Kernel</strong> menu option to clear out and restart the notebook, or clear out and run all steps: <img alt="restarting a notebook" src="../screenshots/WatsonStudio-kernel-options.png" /></p>
+<p>If you clear output then you can select the first cell and press run, which will run the cell then move to the next cell in the notebook.  Keep pressing run to run each cell in turn, ensure you wait for each cell to complete (At the left side of the cell the indicator <strong>[*]</strong> turns to <strong>[n]</strong>, where n is a number) before running the next step.</p>
+<h2 id="step-3-work-with-the-training-data">Step 3 - Work with the training data</h2>
+<p>Within the notebook you are able to manipulate the data. In this section we will use SQL to create the data frames needed to verify and visualise the training data.  You usually need to examine the training data and maybe clean it up before creating the model.  This section shows some of the techniques available.</p>
+<ul>
+<li>In the next empty cell enter the following code then run the cell.  This code enables you to use SQL statements to manipulate the data, even though it came from a NoSql database. Those are so-called Apache Spark DataFrames able to wrap SQL, NoSQL and file data sources:</li>
+</ul>
+<pre><code class="python"># Enable SQL on the data frame
+df.createOrReplaceTempView('df')
+</code></pre>
+
+<ul>
+<li>The temperature and humidity data is imported as strings, so we will convert the columns to doubles.</li>
+</ul>
+<pre><code class="python">from pyspark.sql.functions import translate, col
+
+df_cleaned = df \
+    .withColumn(&quot;temp&quot;, df.temp.cast('double')) \
+    .withColumn(&quot;humidity&quot;, df.humidity.cast('double')) \
+
+df_cleaned.createOrReplaceTempView('df_cleaned')
+df_cleaned.select('temp', 'humidity').distinct().show()
+</code></pre>
+
+<ul>
+<li>Now we will create a new data frame for each training class.  In the next cell enter then run the following:</li>
+</ul>
+<pre><code class="python">df_class_0 = spark.sql('select time, temp, humidity, class from df_cleaned where class = 0')
+df_class_1 = spark.sql('select time, temp, humidity, class from df_cleaned where class = 1')
+df_class_0.createOrReplaceTempView('df_class_0')
+df_class_1.createOrReplaceTempView('df_class_1')
+</code></pre>
+
+<p>For the rest of this section feel free to explore the different options available.  Enter each of the code samples in a cell in the notebook then run the cell to see the results.</p>
+<ul>
+<li>You may want to see the contents of the DataFrame:</li>
+</ul>
+<pre><code class="python"># examine the data
+df_class_0.select('temp', 'humidity').distinct().show()
+</code></pre>
+
+<ul>
+<li>You can verify the database schema:</li>
+</ul>
+<pre><code class="python">df_cleaned.printSchema()
+</code></pre>
+
+<ul>
+<li>You can verify the number of records available for each training class and if necessary correct any skew in the number of records available for each class:</li>
+</ul>
+<pre><code class="python">spark.sql('select class, count(class) from df_cleaned group by class').show()
+</code></pre>
+
+<p>If your training data had double the number of entries for class 0 as class 1 then you can create an adjusted data frame to use for training using the following code : <code>df_skew_fixed = df_class_0.sample(False, 0.5).union(df_class_1)</code>, which selects 50% of the records for class 0 and joins them with the records for class 1, so now both classes will have a similar number of records.  However, this should not be necessary as we ensured we captured a similar number of records for each class when training.</p>
+<ul>
+<li>The pixiedust package provides the ability to visualise data in a number of different ways.  Before using the package you need to import it:</li>
+</ul>
+<pre><code class="python"># visualisation package for python
+import pixiedust
+</code></pre>
+
+<ul>
+<li>Now you can use the capability of pixiedust to visualise or chart your data:</li>
+</ul>
+<pre><code class="python">display(df_class_0)
+</code></pre>
+
+<h2 id="step-4-creating-the-binary-classifier-model">Step 4 - Creating the binary classifier model</h2>
+<p>Once you are confident you have the correct training data available you can proceed to creating the model.</p>
+<p>The approach adopted in this exercise is a common approach for machine learning, where a pipeline of operations or algorithms is constructed to implement the required functionality, in our case generating a model to classify data.</p>
+<ul>
+<li>Before we can access the Spark functionality we need to import a number of packages:</li>
+</ul>
+<pre><code class="python"># Imports for modelling
+from pyspark.ml.feature import StringIndexer, OneHotEncoder
+from pyspark.ml.linalg import Vectors
+from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.feature import Normalizer
+from pyspark.ml import Pipeline
+from pyspark.ml.classification import LogisticRegression
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+</code></pre>
+
+<ul>
+<li>Now we build the pipeline of operations to generate the model.  Here we need to create vectors from our data and pass them through a logistic regression algorithm.  The <code>pipeline.fit(...)</code> and <code>model.transform(...)</code> functions run the previously defined pipeline:</li>
+</ul>
+<pre><code class="python"># create binary classifier model
+vectorAssembler = VectorAssembler(inputCols=[&quot;humidity&quot;,&quot;temp&quot;],
+                                  outputCol=&quot;features&quot;)
+lr = LogisticRegression(maxIter=1000).setLabelCol(&quot;class&quot;)
+pipeline = Pipeline(stages=[vectorAssembler, lr ])
+model = pipeline.fit(df_cleaned)
+result = model.transform(df_cleaned)
+</code></pre>
+
+<ul>
+<li>Once the model is trained we need to extract the model parameters (coefficients and the intercept values in the case of logistic regression), so we can implement the model on the ESP8266.  You will need these values for the next part of the workshop, so make a note of them now:</li>
+</ul>
+<pre><code class="python">model.stages[1].coefficients
+</code></pre>
+
+<pre><code class="python">model.stages[1].intercept
+</code></pre>
+
+<h2 id="step-5-test-the-model">Step 5 - Test the model</h2>
+<p>Once you have built the model you will want to verify how accurate the model is, so there are a number of ways we can do this.  The first one is to use an evaluator to get a measure of how good the model is.  A value of 1.0 represents 100% accuracy over the training data:</p>
+<pre><code class="python">#evaluate classification accuracy (1.0 = 100% accurate)
+binEval = MulticlassClassificationEvaluator().setMetricName(&quot;accuracy&quot;).setPredictionCol(&quot;prediction&quot;).setLabelCol(&quot;class&quot;)
+binEval.evaluate(result)
+</code></pre>
+
+<ul>
+<li>
+<p>You can also apply the model to additional data you may have (needs to be in the same format as the training data, but without the class property).  </p>
+<p>The following code shows how to read data from a database and apply the model to it.  The prediction column shows how the model classified the data.  As this example uses the training data, we have the class property available, so you can see that the prediction should line up with the class.</p>
+</li>
+</ul>
+<pre><code class="python"># test the model
+# re-read data from cloudant
+new_df = readDataFrameFromCloudant('training')
+new_df_cleaned = new_df \
+    .withColumn(&quot;temp&quot;, new_df.temp.cast('double')) \
+    .withColumn(&quot;humidity&quot;, new_df.humidity.cast('double')) \
+
+new_df_cleaned.createOrReplaceTempView('df_cleaned')
+
+result = model.transform(new_df_cleaned)
+result.createOrReplaceTempView('result')
+spark.sql(&quot;select humidity, temp, class, prediction from result&quot;).show(50)
+</code></pre>
+
+<p>(Optionally) If you want to test your model try recording another set of data without the class property - the historic data you are collecting is in the correct format for this.  Within the dataset have records with the sensor in your hand and records where the sensor is not being held.  See how your model performs, especially in transition cases, where the sensor has just been released or has been held a short amount of time.  <em>Note: remove </em><em>class,</em><em> from the select statement if you are using data without the class property</em>:</p>
+<pre><code class="python">#read historic data from cloudant
+new_df = readDataFrameFromCloudant('historicaldata1')
+result = model.transform(new_df)
+result.createOrReplaceTempView('result')
+spark.sql(&quot;select humidity, temp, prediction from result&quot;).show(50)
+</code></pre>
+
+<h2 id="sample-solution">Sample solution</h2>
+<p>There is a sample solution for this part provided in the <a href="notebooks">notebooks</a> folder.  If you have an issue and want to see the solution then within the IoT Sensor Analytics project select to add a new notebook.  Select to create a notebook from file and give the notebook a name - here <strong>IoT Sensor Analytics - solution</strong> has been used.  This assumes you have the file locally on your machine.  Select choose file and locate the <strong>IoT Sensor Analytics.ipynb</strong> file.  Finally ensure you have the Default Spark Python 3.6 XS runtime selected then press <strong>Create Notebook</strong>
+  <img alt="Import solution" src="../screenshots/WatsonStudio-import-solution.png" /></p>
+<p>Alternatively, you can select to import from URL and set the URL to : <a href="https://raw.githubusercontent.com/binnes/esp8266Workshop/master/en/part4/notebooks/IoT%20Sensor%20Analytics.ipynb">https://raw.githubusercontent.com/binnes/esp8266Workshop/master/en/part4/notebooks/IoT%20Sensor%20Analytics.ipynb</a></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

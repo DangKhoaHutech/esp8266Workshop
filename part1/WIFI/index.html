@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part1/WIFI/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>ESP8266 WiFi - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../FIRSTAPP/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../LED/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part1/WIFI.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#connecting-the-esp8266-to-a-wifi-network" class="nav-link">Connecting the ESP8266 to a WiFi network</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="connecting-the-esp8266-to-a-wifi-network">Connecting the ESP8266 to a WiFi network</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>This Lab will show you how to connection your ESP8266 to a local WiFi network.  This Lab will also introduce the Serial Monitor, which allows you to see output from a running application.  By the end of this lab you should:</p>
+<ul>
+<li>Be able to add a WiFi connection to a sketch</li>
+<li>Be able to add a Serial connection and generate output to the serial connection.</li>
+<li>Understand the function calls needed to start up the WiFi and Serial connections then how to use the connections and where to find documentation about the functions available.</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>In the First App practical you verified you had a working development environment and uploaded your first application to the ESP8266.  Now we will start exploring some of the more advanced functionality of the ESP8266, starting with the on board WiFi interface.</p>
+<p>The ESP8266 has a built in WiFi interface that supports 802.11 b/g/n 2.4 GHz networking.  5GHz frequencies are not supported.  The ESP8266 can be setup to be an access point or to join an existing Wireless LAN.  We are going to join a LAN in the workshop.</p>
+<h3 id="step-1-load-an-example-sketch">Step 1 - Load an example sketch</h3>
+<p>In the Arduino IDE, load the WiFiScan example sketch, using <em>File</em> -&gt; <em>Examples</em> -&gt; <em>ESP8266WiFi</em> -&gt; <em>WiFiScan</em> then upload the sketch to your ESP8266.  This sketch will scan for local WiFi networks and display the results.</p>
+<h3 id="step-2-run-the-sketch-and-monitor-output">Step 2 - Run the sketch and monitor output</h3>
+<p><img alt="Serial Monitor" src="../../images/SerialMonitor.png" /></p>
+<p>To display the results, the sketch is using the Serial interface on the ESP8266 to send output to.  This output will be sent back into the USB port on your laptop/workstation.  To see the output you need to open up the Serial Monitor, which is the magnifying glass icon at the top right of the IDE.  You must ensure that the baud rate set in the serial monitor matches the speed of the <code>Serial.begin(115200);</code> statement in the setup function in the sketch.</p>
+<p>Every 5 seconds you will see the board scan for available networks then output what it finds to the serial port.</p>
+<h3 id="step-3-access-the-documentation-for-the-enhanced-esp8266-library">Step 3 - Access the documentation for the enhanced ESP8266 library</h3>
+<p>You can get documentation about using ESP8266 in Arduino and the libraries that are installed with the ESP8266 plugin from <a href="http://arduino-esp8266.readthedocs.io/en/latest/index.html">here</a>.  If you finish this assignment early modify the sketch to show the channel number each network is using and the encryption type in addition to the SSID and RSSI(signal strength).</p>
+<h3 id="step-4-how-to-connect-to-a-wifi-network">Step 4 - How to connect to a WiFi network</h3>
+<p>The example sketch <strong>WiFiClient</strong> shows how to connect to a WiFi network, providing a SSID and password, which we will use in part 2 of the workshop.  Load the sketch (<em>File</em> -&gt; <em>Examples</em> -&gt; <em>ESP8266WiFi</em> -&gt; <em>WiFiClient</em>) and examine the code, take note of how the WiFi network credentials are entered to join a network.</p>
+<p><em>Note: you don't need to run this example and apply for the sparkfun credentials, simply walk through the code and see how the connection to the WiFi is created.</em></p>
+<h3 id="step-5-understanding-the-pattern-of-using-the-esp8266-library">Step 5 - Understanding the pattern of using the ESP8266 Library</h3>
+<p>Now you have seen 2 different example sketches using both Serial and WiFi connections.  You may begin to see a pattern on how to use the resources:</p>
+<ul>
+<li>Optionally include the required header, such as <code>#include "ESP8266WiFi.h"</code></li>
+<li>In the <strong>setup()</strong> function initialise the library, usually with a begin() call and/or setting parameters</li>
+<li>In the <strong>loop()</strong> function access features of the library</li>
+</ul>
+<p><em>Note</em>: *If you finish early jump back to step 3 to add the additional functionality</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

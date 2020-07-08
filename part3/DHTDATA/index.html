@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part3/DHTDATA/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Sensor Data - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part1/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../NODERED/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../DASHBOARD/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part3/DHTDATA.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#receive-device-environmental-sensor-data-in-node-red" class="nav-link">Receive Device Environmental Sensor Data in Node-RED</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#mqtt-application-connections" class="nav-link">MQTT Application connections</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#create-the-node-red-flow-to-receive-device-events" class="nav-link">Create the Node-RED flow to receive device events</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#step-3-node-red-debug-nodes" class="nav-link">Step 3 - Node-RED Debug Nodes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="receive-device-environmental-sensor-data-in-node-red">Receive Device Environmental Sensor Data in Node-RED</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this lab you will build a flow that receives Device environmental temperature and humidity sensor data.  You will learn:</p>
+<ul>
+<li>How to create a new Node-RED flow and configure MQTT Nodes</li>
+<li>How to output the Device environmental temperature and humidity data.</li>
+<li>How to work with JSON data and observe the sensor results in the Debug sidebar.</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>In just a few nodes, Node-RED can receive the data that was transmitted from the device over MQTT to Watson IoT Platform.  This simple exercise will be the foundation for the next several sections that plot the data in a dashboard, trigger Real Time threshold alerts, store the data in Cloud Storage and allow for data analytics and anomaly detection.</p>
+<h2 id="mqtt-application-connections">MQTT Application connections</h2>
+<p>In part 2 you connected the ESP8266 application to the IoT platform using an MQTT client.  In this section you will connect a Node-RED application to the IoT platform.</p>
+<p>The IoT platform uses the open source MQTT protocol to allow devices an applications to connect to the IoT platform, however, it adds some additional security and restrictions over those defined by the MQTT standard.  </p>
+<h3 id="connection-types">Connection types</h3>
+<p>In part 2 you defined a device type and created a device on the platform to represent your ESP8266 board.  The connection was created as a device.  </p>
+<p>In this section you will connect the Node-RED application as an application connection.  Application connections have greater access than a device connection.  Device connections can only produce events and consume commands as the registered device.  Gateways are a special type of device connection with additional privileges that can act on behalf of other devices if they are authorised.</p>
+<p>Application connections can consume events from all devices, publish events on behalf of a devices and send commands to devices.</p>
+<p>The client ID sent as part of the connection request must include a client ID, which is of a fixed format :</p>
+<ul>
+<li>Application : <strong>a:<em>orgId<em>:</em>appId</em></strong></li>
+<li>Scalable application : <strong>A:<em>orgId<em>:</em>appId</em></strong></li>
+<li>Device : <strong>d:<em>orgId<em>:</em>deviceType<em>:</em>deviceId</em></strong></li>
+<li>Gateway : <strong>g:<em>orgId<em>:</em>typeId<em>:</em>deviceId</em></strong></li>
+</ul>
+<h3 id="topics">Topics</h3>
+<p>The IoT platform restricts the topic space used by MQTT.  If you attempt to use an invalid topic your connection will be terminated.  The valid topics are specified in the <a href="https://www.ibm.com/support/knowledgecenter/SSQP8H/iot/platform/applications/mqtt.html">IoT platform documentation</a> but for this section the 2 topics you need to know about are:</p>
+<ul>
+<li>Subscribing to device events : <strong>iot-2/type/<em>device_type<em>/id/</em>device_id<em>/evt/</em>event_id<em>/fmt/</em>format_string</em></strong></li>
+<li>Publishing device commands : <strong>iot-2/type/<em>device_type<em>/id/</em>device_id<em>/cmd/</em>command_id<em>/fmt/</em>format_string</em></strong></li>
+</ul>
+<p>where <em>device_type</em>, <em>device_id</em>, <em>event_id</em>, <em>command_id</em> and <em>format_string</em> are set accordingly.</p>
+<p>When subscribing to topics the wildcard character <strong>+</strong> can be used to subscribe to all events of from any device type, device, event type or format.</p>
+<h3 id="authentication">Authentication</h3>
+<p>In part 2 you needed to register your device to get the token to authenticate against.  With an application you need to use and API key and API token to authenticate.</p>
+<p>When the IoT platform is bound to a CloudFoundry application on the IBM Cloud a API key and token are automatically generated and can be seen in the Runtime environment variable section of the application view on the IBM Cloud web user interface <img alt="env vars" src="../screenshots/app_IoTCredentials.png" /></p>
+<p>You can use the automatically generated values or create your own from the App section of the IoT Platform web console <img alt="IoT App key" src="../screenshots/generateKey.png" /></p>
+<p>If generating your own key you must take a note of the token as, like the device token, once the screen showing the token is closed it is not recoverable.</p>
+<p>The API Key is used as the username when connecting and the API Token is the password.</p>
+<h3 id="custom-certificates">Custom Certificates</h3>
+<p>If you have a custom server certificate configured on the IoT platform then you must use the SNI (Server Name Indication) extension to the TLS protocol to specify the server name in the connection parameters or the IoT platorm will not use your custom certificate.</p>
+<h2 id="create-the-node-red-flow-to-receive-device-events">Create the Node-RED flow to receive device events</h2>
+<h3 id="step-1-configure-an-mqtt-in-node">Step 1 - Configure an MQTT in Node</h3>
+<ul>
+<li>From the Input category of the left Node-RED palette, select an <strong>mqtt in node</strong> and drag it onto your Node-RED flow.</li>
+<li>Double-click on the MQTT node. An <strong>Edit mqtt in node</strong> sidebar will open.</li>
+<li>Click the pencil icon next to the Server property to configure the MQTT server properties - this will open the <strong>mqtt-broker node</strong> sidebar</li>
+<li>Enter the server name in the Server field (<em>orgId</em>.messaging.internetofthings.ibmcloud.com)</li>
+<li>Enter 8883 as the Port</li>
+<li>Enter the Client ID (a:<em>orgId</em>:<em>appId</em>).  The appID can be any unique string</li>
+<li>Enable secure (SSL/TLS) connection then select the pencil next to the TLS configuration to open the <strong>Edit tls-config node</strong> sidebar<ul>
+<li>Upload the rootCA_certificate.pem file you created in part 2 that is enabled on your server as the CA Certificate</li>
+<li>Enable Verify server certificate</li>
+<li>Enter the Server Name (<em>orgId</em>.messaging.internetofthings.ibmcloud.com).  This sets the SNI extension on the TLS connection</li>
+<li>Select Update to close the <strong>Edit tls-config node</strong> <img alt="TLS Config" src="../screenshots/TLSconfig.png" /></li>
+</ul>
+</li>
+<li>You have finished on the connection tab <img alt="broker connection" src="../screenshots/mqttBrokerConnection.png" /></li>
+<li>Switch to the Security tab and enter the Username and Password - get these from the application runtime environment variables tab of your IBM Cloud application <img alt="mqtt Broker Security" src="../screenshots/mqttBrokerSecurity.png" /></li>
+<li>press the Update button to return to the <strong>Edit mqtt in node</strong> sidepanel</li>
+<li>Set the topic field to <strong>iot-2/type/+/id/+/evt/+/fmt/json</strong>.  The wildcard <strong>+</strong> is used to select all events from all devices and all events.  The topic requires that the event contains JSON data.</li>
+<li>Select the output as <strong>a parsed JSON object</strong> <img alt="MQTT in node config" src="../screenshots/mqttInNodeConfig.png" /></li>
+<li>Press Done to close the config sidepanel</li>
+</ul>
+<h3 id="step-2-extract-the-temperature-from-the-json-object">Step 2 - Extract the Temperature from the JSON Object</h3>
+<ul>
+<li>Recall that the environmental sensor data was transmitted in a JSON object</li>
+</ul>
+<p><code>{ "d": {"temp":X, "humidity":Y }}</code></p>
+<ul>
+<li>Node-RED passes data from node to node in a <em>msg.payload</em> JSON object.</li>
+<li>The <strong>Change</strong> node can be used to extract a particular value so that it can be directly output or manipulated (for instance in a Dashboard chart which we will take advantage of in the next section).</li>
+<li>From the Function category of the left Node-RED palette, select a <strong>Change</strong> node and drag it onto your Node-RED flow</li>
+<li>Double-click on the Change node. An <strong>Edit change node</strong> sidebar will open</li>
+<li>Configure the "to" AZ dropdown to msg. and set it to <em>payload.d.temp</em></li>
+<li>Click on the red <strong>Done</strong> button</li>
+<li>Wire the node to the MQTT in node by clicking and dragging the connector on the right of the MQTT in node to the connector on the left of the change node
+ <img alt="Receive DHT Data" src="../screenshots/ESP8266-ReceiveDHTdata-Changenode.png" /></li>
+</ul>
+<h2 id="step-3-node-red-debug-nodes">Step 3 - Node-RED Debug Nodes</h2>
+<ul>
+<li>Debug nodes can be used to print out JSON object values and help you validate your program.</li>
+<li>From the Output category of the left Node-RED palette, drag two <strong>debug nodes</strong> onto your Node-RED flow (7).</li>
+<li>Double-click on one of them. An <strong>Edit debug node</strong> sidebar will open.</li>
+<li>Configure the Output to print the <em>complete msg object</em> (8).</li>
+<li>Click on the red <strong>Done</strong> button.</li>
+<li>Wire the 2 nodes as shown
+ <img alt="Receive DHT Data" src="../screenshots/ESP8266-ReceiveDHTdata-Debugnode.png" /></li>
+</ul>
+<h3 id="step-4-wire-the-node-red-nodes-together">Step 4 - Wire the Node-RED nodes together</h3>
+<ul>
+<li>Click on the red <strong>Deploy</strong> button in the upper right corner.</li>
+<li>The <strong>mqtt in</strong> node should show status <strong>Connected</strong></li>
+<li>Observe the DHT sensor data in the <strong>debug</strong> tab of the Node-RED right sidebar.  You can expand the twisties to expose the JSON object information. Hover over a debug message in the right sidebar and the node that generated the message will be outlined in orange.
+  <img alt="Receive DHT Data" src="../screenshots/ESP8266-ReceiveDHTdata-Deploy.png" /></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

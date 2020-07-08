@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part3/INTERVAL/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Reporting interval - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part1/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../HISTORY/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../LED/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part3/INTERVAL.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#control-your-device-reporting-interval-via-a-node-red-dashboard-form" class="nav-link">Control your Device reporting interval via a Node-RED Dashboard Form</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="control-your-device-reporting-interval-via-a-node-red-dashboard-form">Control your Device reporting interval via a Node-RED Dashboard Form</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this lab you will modify the ESP8266 Arduino program to receive MQTT commands from the IBM Cloud and build a Node-RED Dashboard Form to dynamically change the reporting interval of the ESP8266 DHT environmental sensor data.  You will learn:</p>
+<ul>
+<li>How to build a Node-RED Dashboard Form</li>
+<li>How to send MQTT commands from the IBM Cloud to your ESP8266</li>
+<li>How to receive MQTT commands within your ESP8266 Arduino program / sketch.</li>
+<li>How to work with JSON data on the ESP8266</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Remote management and control of IoT Devices is critical to managing the flow of sensor data to the Cloud. The IoT Device might only need to check in occasionally during quiet periods of inactivity. Waking up the device and requesting that it report sensor data more frequently during active time periods is better for power management, bandwidth consumption and cloud storage.</p>
+<p>This section will build a Node-RED Dashboard Form where you can enter a new reporting interval.  A MQTT command will be published from the IBM Cloud to the ESP8266 device. The ESP8266 will receive the interval update and adjust how often it transmits the DHT environmental sensor data.</p>
+<h3 id="step-1-import-the-node-red-dashboard-reporting-interval-form-flow">Step 1 - Import the Node-RED Dashboard Reporting Interval Form Flow</h3>
+<ul>
+<li>Open the “Get the Code” github URL listed below, mark or Ctrl-A to select all of the text, and copy the text for the flow to your Clipboard. Recall from a previous section, click on the Node-RED Menu, then Import, then Clipboard. Paste the text of the flow into the Import nodes dialog and press the red Import button.</li>
+</ul>
+<p>Node-RED Dashboard Reporting Interval Form Flow <a href="../flows/NRD-ReportingInterval-Form.json">Get the Code:</a></p>
+<ul>
+<li>Turn to the <em>Set ESP8266 Interval</em> flow tab.</li>
+<li>Fix the configuration of the <strong>mqtt in</strong> node</li>
+<li>Click the <strong>Deploy</strong> button on the top of menu bar to deploy the Node-RED flow.</li>
+</ul>
+<p><img alt="Node-RED Dashboard Form flow screenshot" src="../screenshots/NRD-ReportingIntervalForm-flow.png" /></p>
+<h3 id="step-2-node-red-dashboard-form-node">Step 2 - Node-RED Dashboard Form node</h3>
+<ul>
+<li>The Node-RED Dashboard <strong>Form</strong> node can be customized to query user input fields - text, numbers, email addresses, passwords, checkboxes and switches.  Sophisticated forms can be constructed in one Node-RED Dashboard Form node.</li>
+<li>After entering the form data, the user can press <strong>Submit</strong> or <strong>Cancel</strong> buttons.</li>
+<li>When the <strong>Submit</strong> button is pressed the flow constructs a <code>msg.payload</code> JSON Object with the values entered.</li>
+<li>Double-click on the Dashboard Form node (1). An <strong>Edit form node</strong> sidebar will open.</li>
+<li>This form only has one element (2). It asks in a field labelled <em>Reporting Interval</em> for a numeric value. This value will be stored in a variable named <em>Seconds</em></li>
+<li>You might experiment by adding additional elements (3) that could prompt for Text, Numbers, validated email addresses, Passwords (which will be masked when input as * ), Checkmarks or Switches.</li>
+</ul>
+<p><img alt="Node-RED Dashboard Form flow node" src="../screenshots/NRD-ReportingIntervalForm-formnode.png" /></p>
+<ul>
+<li>Press the Cancel button when you have finished experimenting with the form node.</li>
+</ul>
+<h3 id="step-3-description-of-the-set-esp8266-interval-flow">Step 3 - Description of the Set ESP8266 Interval flow</h3>
+<ul>
+<li>The <em>Set ESP8266 Interval</em> flow contains just 5 nodes.</li>
+<li>The Dashboard <strong>Form</strong> node queries the user for a new interval value.</li>
+<li>The result is passed in a <code>msg.payload.Seconds</code> JSON Object to a <strong>Switch</strong> node which tests if the number entered is equal to or greater than Zero.</li>
+<li>The <code>msg.payload</code> is reformatted in a <strong>Change</strong> node using the JSONata Expression editor into a JSON Object <code>{"Interval":msg.payload.Seconds}</code></li>
+<li>The resulting JSON Object is passed to an <strong>mqtt out</strong> node.</li>
+<li>The topic configured in the <strong>mqtt out</strong> node specifies the device to receive the command.</li>
+</ul>
+<h3 id="step-4-send-mqtt-commands-using-the-mqtt-out-node">Step 4 - Send MQTT Commands using the <strong>MQTT Out</strong> Node</h3>
+<ul>
+<li>Double-click on the IBM IoT node (4). An <strong>Edit mqtt out node</strong> sidebar will open.</li>
+<li>The <strong>mqtt out</strong> node is configured to send a <strong>Device Command</strong> (5) to your ESP8266 Device Id by using the appropriate topic.  The target device is identified as part of the topic</li>
+<li>The <strong>Command Type</strong> will be named <em>interval</em> and is also set in the topic</li>
+<li>Press the red Done button.</li>
+</ul>
+<p><img alt="Node-RED Dashboard Form flow node" src="../screenshots/NRD-ReportingIntervalForm-mqttnode.png" /></p>
+<h3 id="step-5-reprogram-the-esp8266-to-subscribe-to-mqtt-commands">Step 5 - Reprogram the ESP8266 to subscribe to MQTT Commands</h3>
+<ul>
+<li>Open the “Get the Code” github URL listed below, mark or Ctrl-A to select all of the text, and copy the text for the replacement ESP8266 program.</li>
+</ul>
+<p>IoT Workshop Arduino Program : <a href="https://raw.githubusercontent.com/binnes/esp8266Workshop/master/IoTWorkshop.ino/IoTWorkshop.ino.ino">Get the Code</a></p>
+<ul>
+<li>Return to the Arduino IDE</li>
+<li>Record your Watson IoT connection details from the top of your version of the existing IoTWorkshop.ino you created in Part 2.</li>
+<li>Replace the source code with the above.</li>
+<li>This version registers a callback and subscribes to MQTT Device Commands.</li>
+<li>The program loops but polls for MQTT incoming Commands.</li>
+<li>If a Interval command is sent, it updates how long it should sleep before sending the next DHT environmental sensor data.</li>
+<li>Merge in your Watson IoT connection details.</li>
+<li>Compile and Flash this updated program to the ESP8266</li>
+</ul>
+<h3 id="step-6-node-red-dashboard-reporting-interval-form">Step 6 - Node-RED Dashboard Reporting Interval Form</h3>
+<ul>
+<li>Turn to the Node-RED Dashboard browser tab, click on the menu tab in the upper left corner, and select the ESP8266 Interval tab.</li>
+<li>On the ESP8266 Interval dashboard, click on the form and enter a new value.</li>
+<li>Click on the <strong>SUBMIT</strong> button.</li>
+<li>The button will trigger the flow to send the new value to the ESP8266 over MQTT.</li>
+</ul>
+<p><img alt="Reporting interval form" src="../screenshots/NRD-ReportingIntervalForm.png" /></p>
+<h3 id="step-7-arduino-serial-monitor">Step 7 - Arduino Serial Monitor</h3>
+<ul>
+<li>Launch the Serial Monitor from the Arduino IDE - <em>Tools -&gt; Serial Monitor</em></li>
+<li>Watch the Reporting Interval loop</li>
+<li>Change the reporting frequency in the Node-RED Dashboard Form.</li>
+<li>In this screenshot the Reporting Interval was changed from 10 to 5 to 2 and the frequency that the environmental data was sent increased.</li>
+</ul>
+<p><img alt="Arduino Serial Monitor" src="../screenshots/ArduinoSerialMonitor.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

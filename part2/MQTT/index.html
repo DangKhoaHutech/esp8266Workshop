@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part2/MQTT/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Intro to MQTT - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part1/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../APP/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../CERT1/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part2/MQTT.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#connecting-device-to-the-watson-iot-platform-using-mqtt" class="nav-link">Connecting Device to the Watson IoT Platform using MQTT</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="connecting-device-to-the-watson-iot-platform-using-mqtt">Connecting Device to the Watson IoT Platform using MQTT</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this lab you will learn how to add MQTT messaging to an application.  You will learn:</p>
+<ul>
+<li>How to connect to a MQTT broker using unsecured connection</li>
+<li>How to use MQTT to connect to the Watson IoT platform</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>In the previous lab you built the stand alone sensor application.  Now we want to make it an Internet of Things application by adding in MQTT to send the data to the IoT Platform.</p>
+<p>We will start by using an unsecured MQTT connection, then in the next section we will secure the connection.  However, the Watson IoT platform is configured to block all unsecured connections by default, so you need to configure your Watson IoT service to allow unsecured connection.</p>
+<h3 id="step-1-configure-the-watson-iot-platform-to-allow-unsecured-connections">Step 1 - Configure the Watson IoT platform to allow unsecured connections</h3>
+<p>Open up the IoT platform console for the instance connected to your Starter Kit application.  From the dashboard (<em>≡</em> -&gt; <em>Dashboard</em>) select the application then in the overview section select the IoT platform in the connections panel).</p>
+<p>Launch the IoT platform console, then switch to the Settings section.  Under Security select Connection Security then press the button <strong>Open Connection Security Policy</strong>.  Press the pencil icon next to Connection Security to edit the settings.  Change the Default Security Level to <strong>TLS Optional</strong>, accept the Warning message by pressing the Ok button, then <strong>Save</strong> the change.  Your IoT platform instance will now accept unsecured MQTT connections.  Leave the browser window showing the IoT Platform console open, as you'll need to get some information when adding the MQTT code to the ESP8266 application.</p>
+<h3 id="step-2-enhancing-the-application-to-send-data-to-the-iot-platform">Step 2 - Enhancing the application to send data to the IoT platform</h3>
+<p>In the Arduino IDE you need to add the MQTT code, but before adding the MQTT code you need to install the library.  In the library manager (<em>Sketch</em> -&gt; <em>Include Library</em> -&gt; <em>Manage Libraries...</em>) search for and install the PubSubClient.  Then add the include to the top of the application, below the existing include files</p>
+<p><code>#include &lt;PubSubClient.h&gt;</code></p>
+<p>Now add some #define statements to contain that the MQTT code will use.  Add these under the comment <strong>UPDATE CONFIGURATION TO MATCH YOUR ENVIRONMENT</strong>:</p>
+<pre><code class="C++">// --------------------------------------------------------------------------------------------
+//        UPDATE CONFIGURATION TO MATCH YOUR ENVIRONMENT
+// --------------------------------------------------------------------------------------------
+
+// Watson IoT connection details
+#define MQTT_HOST &quot;XXXXXX.messaging.internetofthings.ibmcloud.com&quot;
+#define MQTT_PORT 1883
+#define MQTT_DEVICEID &quot;d:XXXXXX:YYYY:ZZZZ&quot;
+#define MQTT_USER &quot;use-token-auth&quot;
+#define MQTT_TOKEN &quot;PPPPP&quot;
+#define MQTT_TOPIC &quot;iot-2/evt/status/fmt/json&quot;
+#define MQTT_TOPIC_DISPLAY &quot;iot-2/cmd/display/fmt/json&quot;
+</code></pre>
+
+<p>You need to change the values to match your configuration:</p>
+<ul>
+<li>XXXXXX should be the 6 character Organisation ID for your platform.  If you look in the settings section of the IoT Platform console, under identity you will see the value you need to use.</li>
+<li>YYYY is the device type you used to for the ESP8266 device.  This should be ESP8266, but you can verify by looking in the devices section.  All registered devices are listed here, and you can see the Device Type and Device ID.</li>
+<li>ZZZZ is the device ID for your ESP8266, in the lab it was suggested to use dev01</li>
+<li>PPPPP is the token you used when registering the device (hopefully you haven't forgot what you used, if so you need to delete the device and reregister it)</li>
+</ul>
+<p>After the configuration block and under the pixel and dht variable declarations you need to add the the following:</p>
+<pre><code class="C++">// MQTT objects
+void callback(char* topic, byte* payload, unsigned int length);
+WiFiClient wifiClient;
+PubSubClient mqtt(MQTT_HOST, MQTT_PORT, callback, wifiClient);
+</code></pre>
+
+<p>Above the setup() function add the implementation of the callback function.  This is called whenever a MQTT message is sent to the device.  For now it just prints a message to the serial console:</p>
+<pre><code class="C++">void callback(char* topic, byte* payload, unsigned int length) {
+  // handle message arrived
+  Serial.print(&quot;Message arrived [&quot;);
+  Serial.print(topic);
+  Serial.print(&quot;] : &quot;);
+
+  payload[length] = 0; // ensure valid content is zero terminated so can treat as c-string
+  Serial.println((char *)payload);
+}
+</code></pre>
+
+<p>at the end of the setup() function add the following code to connect the MQTT client to the IoT Platform:</p>
+<pre><code class="C++">  // Connect to MQTT - IBM Watson IoT Platform
+  if (mqtt.connect(MQTT_DEVICEID, MQTT_USER, MQTT_TOKEN)) {
+    Serial.println(&quot;MQTT Connected&quot;);
+    mqtt.subscribe(MQTT_TOPIC_DISPLAY);
+
+  } else {
+    Serial.println(&quot;MQTT Failed to connect!&quot;);
+    ESP.reset();
+  }
+</code></pre>
+
+<p>at the top of the loop() function add the following code to verify the mqtt connection is still valid and call the mqtt.loop() function to process any outstanding messages:</p>
+<pre><code class="C++">  mqtt.loop();
+  while (!mqtt.connected()) {
+    Serial.print(&quot;Attempting MQTT connection...&quot;);
+    // Attempt to connect
+    if (mqtt.connect(MQTT_DEVICEID, MQTT_USER, MQTT_TOKEN)) {
+      Serial.println(&quot;MQTT Connected&quot;);
+      mqtt.subscribe(MQTT_TOPIC_DISPLAY);
+      mqtt.loop();
+    } else {
+      Serial.println(&quot;MQTT Failed to connect!&quot;);
+      delay(5000);
+    }
+  }
+</code></pre>
+
+<p>Lastly add the code to send the data to the IoT Platform.  We already have the data formatted as a JSON string, so we can now add the following code after it is printed to the console in the <strong>loop()</strong> function:</p>
+<pre><code class="C++">    Serial.println(msg);
+    if (!mqtt.publish(MQTT_TOPIC, msg)) {
+      Serial.println(&quot;MQTT Publish failed&quot;);
+    }
+</code></pre>
+
+<p>Finally, replace the 10 second <code>delay(10000)</code> to call the mqtt <strong>loop()</strong> function, so the program processes incoming messages:</p>
+<pre><code class="C++">  // Pause - but keep polling MQTT for incoming messages
+  for (int i = 0; i &lt; 10; i++) {
+    mqtt.loop();
+    delay(1000);
+  }
+</code></pre>
+
+<h3 id="step-3-run-the-application">Step 3 - Run the application</h3>
+<p>Compile and upload the code to your ESP8266 and you should see the <code>WiFi Connected</code>, followed by <code>Attempting MQTT connection...MQTT Connected</code>. Every 10 second interval you see the DHT sensor data printed on the console.  The ESP8266 should also be publishing MQTT messages to the Watson IoT Platform.  To verify this, switch to your browser window showing the IoT Platform console, switch to the Devices section.  Click on the esp8266 device to expand it then click <strong>Recent Events</strong>.  You should see the status event messages with the live data appearing every 10 seconds.</p>
+<h3 id="step-4-how-it-works">Step 4 - How it works</h3>
+<p>When connecting to the Watson IoT platform there are some requirements on some parameters used when connecting.  The <a href="https://console.bluemix.net/docs/services/IoT/reference/security/connect_devices_apps_gw.html#connect_devices_apps_gw">platform documentation</a> provides full details:</p>
+<ol>
+<li>The #define statements construct the required parameters:</li>
+<li>host : &lt; <strong>org id</strong> &gt;.messaging.internetofthings.ibmcloud.com</li>
+<li>device ID : d:&lt; <strong>org id</strong> &gt;:&lt; <strong>device type</strong> &gt;:&lt; <strong>device id</strong> &gt;</li>
+<li>topic to publish data : iot-2/evt/&lt; <strong>event id</strong> &gt;/fmt/&lt;  <strong>format string</strong> &gt;</li>
+<li>topic to receive commands : iot-2/cmd/&lt; <strong>command id</strong> &gt;/fmt/&lt; <strong>format string</strong> &gt;</li>
+<li>When you initialise the PubSubClient you need to pass in the hostname, the port (1883 for unsecured connections), a callback function and a network connection.  The callback function is called whenever incoming messages are received.</li>
+<li>Call <strong>connect()</strong> to connect with the platform, passing in the device ID, a user, which is always the value <em>use-token-auth</em> and the token you chose when registering the device.</li>
+<li>The <strong>subscribe()</strong> function registers the connection to receive messages published on the given topic.</li>
+<li>The <strong>loop()</strong> method must be regularly called to keep the connection alive and get incoming messages.</li>
+<li>The <strong>publish()</strong> function sends data on the provided topic - <em>Note</em>: On some MQTT Clients this function only queues the message for sending, it is actually sent in the <strong>loop()</strong> function.</li>
+<li>You can verify the connection status with the <strong>connected()</strong> function.</li>
+</ol>
+<h3 id="solution-code">Solution code</h3>
+<p>The complete ESP8266 application is shown below (you will need to change the configuration section to match your environment):</p>
+<pre><code class="C++">#include &lt;ESP8266WiFi.h&gt;
+#include &lt;Adafruit_NeoPixel.h&gt;
+#include &lt;DHT.h&gt;
+#include &lt;ArduinoJson.h&gt;
+#include &lt;PubSubClient.h&gt;
+
+// --------------------------------------------------------------------------------------------
+//        UPDATE CONFIGURATION TO MATCH YOUR ENVIRONMENT
+// --------------------------------------------------------------------------------------------
+
+// Watson IoT connection details
+#define MQTT_HOST &quot;z53u40.messaging.internetofthings.ibmcloud.com&quot;
+#define MQTT_PORT 1883
+#define MQTT_DEVICEID &quot;d:z53u40:ESP8266:dev01&quot;
+#define MQTT_USER &quot;use-token-auth&quot;
+#define MQTT_TOKEN &quot;password&quot;
+#define MQTT_TOPIC &quot;iot-2/evt/status/fmt/json&quot;
+#define MQTT_TOPIC_DISPLAY &quot;iot-2/cmd/display/fmt/json&quot;
+
+// Add GPIO pins used to connect devices
+#define RGB_PIN 5 // GPIO pin the data line of RGB LED is connected to
+#define DHT_PIN 4 // GPIO pin the data line of the DHT sensor is connected to
+
+// Specify DHT11 (Blue) or DHT22 (White) sensor
+#define DHTTYPE DHT11
+#define NEOPIXEL_TYPE NEO_RGB + NEO_KHZ800
+
+// Temperatures to set LED by (assume temp in C)
+#define ALARM_COLD 0.0
+#define ALARM_HOT 30.0
+#define WARN_COLD 10.0
+#define WARN_HOT 25.0
+
+
+// Add WiFi connection information
+char ssid[] = &quot;SSID&quot;;     //  your network SSID (name)
+char pass[] = &quot;WiFi_password&quot;;  // your network password
+
+
+// --------------------------------------------------------------------------------------------
+//        SHOULD NOT NEED TO CHANGE ANYTHING BELOW THIS LINE
+// --------------------------------------------------------------------------------------------
+Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1, RGB_PIN, NEOPIXEL_TYPE);
+DHT dht(DHT_PIN, DHTTYPE);
+
+
+// MQTT objects
+void callback(char* topic, byte* payload, unsigned int length);
+WiFiClient wifiClient;
+PubSubClient mqtt(MQTT_HOST, MQTT_PORT, callback, wifiClient);
+
+// variables to hold data
+StaticJsonDocument&lt;100&gt; jsonDoc;
+JsonObject payload = jsonDoc.to&lt;JsonObject&gt;();
+JsonObject status = payload.createNestedObject(&quot;d&quot;);
+static char msg[50];
+
+float h = 0.0;
+float t = 0.0;
+
+unsigned char r = 0;
+unsigned char g = 0;
+unsigned char b = 0;
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  // handle message arrived
+  Serial.print(&quot;Message arrived [&quot;);
+  Serial.print(topic);
+  Serial.print(&quot;] : &quot;);
+
+  payload[length] = 0; // ensure valid content is zero terminated so can treat as c-string
+  Serial.println((char *)payload);
+}
+
+void setup() {
+ // Start serial console
+  Serial.begin(115200);
+  Serial.setTimeout(2000);
+  while (!Serial) { }
+  Serial.println();
+  Serial.println(&quot;ESP8266 Sensor Application&quot;);
+
+  // Start WiFi connection
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, pass);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(&quot;.&quot;);
+  }
+  Serial.println(&quot;&quot;);
+  Serial.println(&quot;WiFi Connected&quot;);
+
+  // Start connected devices
+  dht.begin();
+  pixel.begin();
+
+  // Connect to MQTT - IBM Watson IoT Platform
+  if (mqtt.connect(MQTT_DEVICEID, MQTT_USER, MQTT_TOKEN)) {
+    Serial.println(&quot;MQTT Connected&quot;);
+    mqtt.subscribe(MQTT_TOPIC_DISPLAY);
+
+  } else {
+    Serial.println(&quot;MQTT Failed to connect!&quot;);
+    ESP.reset();
+  }
+}
+
+void loop() {
+  mqtt.loop();
+  while (!mqtt.connected()) {
+    Serial.print(&quot;Attempting MQTT connection...&quot;);
+    // Attempt to connect
+    if (mqtt.connect(MQTT_DEVICEID, MQTT_USER, MQTT_TOKEN)) {
+      Serial.println(&quot;MQTT Connected&quot;);
+      mqtt.subscribe(MQTT_TOPIC_DISPLAY);
+      mqtt.loop();
+    } else {
+      Serial.println(&quot;MQTT Failed to connect!&quot;);
+      delay(5000);
+    }
+  }
+  h = dht.readHumidity();
+  t = dht.readTemperature(); // uncomment this line for centigrade
+  // t = dht.readTemperature(true); // uncomment this line for Fahrenheit
+
+  // Check if any reads failed and exit early (to try again).
+  if (isnan(h) || isnan(t)) {
+    Serial.println(&quot;Failed to read from DHT sensor!&quot;);
+  } else {
+    // Set RGB LED Colour based on temp
+    b = (t &lt; ALARM_COLD) ? 255 : ((t &lt; WARN_COLD) ? 150 : 0);
+    r = (t &gt;= ALARM_HOT) ? 255 : ((t &gt; WARN_HOT) ? 150 : 0);
+    g = (t &gt; ALARM_COLD) ? ((t &lt;= WARN_HOT) ? 255 : ((t &lt; ALARM_HOT) ? 150 : 0)) : 0;
+    pixel.setPixelColor(0, r, g, b);
+    pixel.show();
+
+    // Send data to Watson IoT Platform
+    status[&quot;temp&quot;] = t;
+    status[&quot;humidity&quot;] = h;
+    serializeJson(jsonDoc, msg, 50);
+    Serial.println(msg);
+    if (!mqtt.publish(MQTT_TOPIC, msg)) {
+      Serial.println(&quot;MQTT Publish failed&quot;);
+    }
+  }
+
+  // Pause - but keep polling MQTT for incoming messages
+  for (int i = 0; i &lt; 10; i++) {
+    mqtt.loop();
+    delay(1000);
+  }
+}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

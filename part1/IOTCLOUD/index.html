@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part1/IOTCLOUD/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>IBM Cloud - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../DHT/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../part2/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part1/IOTCLOUD.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#deploying-an-application-to-the-ibm-cloud" class="nav-link">Deploying an application to the IBM Cloud</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#internet-of-things-platform-on-the-ibm-cloud" class="nav-link">Internet of Things Platform  on the IBM Cloud</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="deploying-an-application-to-the-ibm-cloud">Deploying an application to the IBM Cloud</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this lab you will learn how to deploy a starter application to the IBM Cloud.  You will learn:</p>
+<ul>
+<li>How to access the cloud and set the desired location to work in</li>
+<li>Access the catalog of services and select a Starter Application to deploy</li>
+<li>Deploy a Starter Application to the IBM Cloud</li>
+<li>Access the Starter Application source code and update the application</li>
+<li>Become familiar with the DevOps tooling available in the IBM Cloud</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Before finishing part 1 you should deploy the Internet of Things Platform on the IBM Cloud as we will be using it in Part 2.</p>
+<p>Before starting these steps it is assumed you have completed the steps in the <a href="../PREREQ/">prerequisite section</a> and have an active IBM Cloud account.</p>
+<!-- Allow spaces inside emphasis markers (MD037) -->
+
+<!-- markdownlint-disable MD037 -->
+
+<h2 id="internet-of-things-platform-on-the-ibm-cloud"><strong>Internet of Things Platform </strong> on the IBM Cloud</h2>
+<!-- markdownlint-enable MD037 -->
+
+<p>The IBM Watson IoT Platform solution provides a set of IBM Cloud services as a single IBM-managed Software as a Service (SaaS) offering that enables you to collect and analyze IoT data.</p>
+<p>In this workshop your ESP8266 device will be sending data to the IBM IoT Platform, so you need to deploy an instance of the IoT Platform service in your cloud account.</p>
+<h3 id="step-1-accessing-the-cloud-and-selecting-an-appropriate-space">Step 1 - Accessing the cloud and selecting an appropriate space</h3>
+<p><a href="https://cloud.ibm.com">Login</a> to your cloud account.</p>
+<p>If you haven't previously used any of the Cloud Foundry locations you may need to create a <strong>space</strong> to be able to work in the chosen location.  To do this from the top menu select <em>Manage</em> -&gt; <em>Account</em> -&gt; <em>Cloud Foundry Orgs</em> then click on your mail address to configure your organisation.  If there are no spaces showing, or you have a paid account and want to work in a new region, then click to <strong>Add a space</strong> then select the region and provide a name for the space.</p>
+<p>If you are working in a lite account you are restricted to a single Cloud Foundry space and are unable to create additional spaces in different regions unless you upgrade your account.</p>
+<p>Lite accounts have resource restrictions, so to be able to deploy the starter application you may need to delete any resources already deployed.</p>
+<h3 id="step-2-deploy-a-starter-application">Step 2 - Deploy a Starter Application</h3>
+<ul>
+<li>open up the Catalog using the top menu, then select <strong>Web and Applications</strong> from the left menu</li>
+<li>select the <strong>Software</strong> tab</li>
+<li>select the <strong>Node-RED App</strong></li>
+</ul>
+<p><img alt="Catalog" src="../../images/catalog.png" /></p>
+<ul>
+<li>in the screen presented press the <strong>Create app</strong> button</li>
+<li>in the Create app screen optionally enter an App name (or you can simple accept the name provided) and select a region to deploy the Cloudant NoSQL database to - ideally this should be the same region you have your Cloud Foundry space in.</li>
+<li>press the <strong>Create</strong> button to create the App definition</li>
+</ul>
+<p><img alt="Create App" src="../../images/createApp.png" /></p>
+<ul>
+<li>wait until the Cloudant service has been deployed</li>
+<li>press the <strong>Create Service +</strong> button, then select the Internet of Things section and press the <strong>Next</strong> button</li>
+<li>select the Internet of Things Platform then press the <strong>Next</strong> button</li>
+<li>choose the closest region, ensure the Lite pricing plan is selected then press Create to add the Internet of Things Platform to your application</li>
+<li>press <strong>Deploy you app</strong></li>
+</ul>
+<p><img alt="Deploy App" src="../../images/deployApp.png" /></p>
+<ul>
+<li>ensure IBM Cloud Foundry is the deployment target (this is the only option for lite accounts)</li>
+<li>press <strong>New</strong> to create an IBM Cloud API key, accept the defaults in the popup and press <strong>OK</strong></li>
+<li>select the Memory allocation per instance to 256 MB</li>
+<li>ensure the host name is valid, if not modify it until any errors are cleared</li>
+<li>select the region closest to you to deploy the toolchain</li>
+<li>press <strong>Create</strong> to generate the toolchain for your application</li>
+</ul>
+<p><img alt="App Details" src="../../images/appDetails.png" /></p>
+<p>The Starter Application is now deploying by running the newly created toolchain.</p>
+<p>Please leave this to deploy - now is a good time to go for a break.</p>
+<h3 id="step-3-check-deployment-status">Step 3 - Check deployment status</h3>
+<ul>
+<li>open the main menu <img alt="menu" src="../../images/menu.png" />(Top left of web console UI)</li>
+<li>select Resource list</li>
+<li>select your application from the Cloud Foundry apps section to launch the application overview page</li>
+</ul>
+<p><img alt="App Details" src="../../images/resourceList.png" /></p>
+<p>On the overview page you should see:</p>
+<ul>
+<li>the app is awake, which shows the deployment was successful and the application is running</li>
+<li>the link to open the application</li>
+<li>the connections to the Cloudant database and IoT platform services</li>
+<li>link to access toolchain</li>
+</ul>
+<p><img alt="App Overview" src="../../images/appOverview.png" /></p>
+<p>You now have the cloud application deployed, so you are now ready to move to the <a href="../../part2/">next section</a> of the workshop to setup secured communications between the ESP8266 device and the IBM Cloud IOT service</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

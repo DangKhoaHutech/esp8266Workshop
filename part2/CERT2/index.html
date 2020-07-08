@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part2/CERT2/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Client Certificates - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part1/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../CERT1/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../part3/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part2/CERT2.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#using-a-device-certificate-to-authenticate-to-the-watson-iot-platform" class="nav-link">Using a Device Certificate to authenticate to the Watson IoT platform</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="using-a-device-certificate-to-authenticate-to-the-watson-iot-platform">Using a Device Certificate to authenticate to the Watson IoT platform</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this lab you will extend the application by enabling client side certificates.  You will learn how to:</p>
+<ul>
+<li>Generate client keys and certificates</li>
+<li>Modify the application to use the client certificates</li>
+<li>Configure the IoT platform connection policy to require tokens and/or certificates</li>
+</ul>
+<h3 id="step-1-information-only-generating-the-key-and-certificate-for-a-device">Step 1 - INFORMATION ONLY - Generating the key and certificate for a device</h3>
+<p>The script file you ran in the previous section has already generated the client certificates for you by running the commands shown below:</p>
+<pre><code class="bash">openssl genrsa -aes256 -passout pass:password123 -out SecuredDev01_key.pem 2048
+
+openssl req -new -sha256 -subj &quot;/C=GB/ST=DOR/L=Bournemouth/O=z53u40/OU=z53u40 Corporate/CN=d:ESP8266:dev01&quot; -passin pass:password123 -key SecuredDev01_key.pem -out SecuredDev01_crt.csr
+
+openssl x509 -days 3650 -in SecuredDev01_crt.csr -out SecuredDev01_crt.pem -req -sha256 -CA rootCA_certificate.pem -passin pass:password123 -CAkey rootCA_key.pem -set_serial 131
+
+openssl rsa -outform der -in SecuredDev01_key.pem -passin pass:password123 -out SecuredDev01_key.key
+
+openssl rsa -in SecuredDev01_key.pem -passin pass:password123 -out SecuredDev01_key_nopass.pem
+
+openssl x509 -outform der -in SecuredDev01_crt.pem -out SecuredDev01_crt.der
+</code></pre>
+
+<p>You will notice that the client certificate contains the client ID in the CN property of the certificate subject field.  This is how the certificate identifies the client to the server.  The Watson IoT platform requires the Client ID to be in the form of d:[<em>device type</em>]:[<em>device ID</em>].</p>
+<h3 id="step-2-upload-the-certificate-and-key-to-the-esp8266-device">Step 2 - Upload the certificate and key to the ESP8266 device</h3>
+<p>You need to add the private key (SecuredDev01_key_nopass.pem) and the certificate (SecuredDev01_crt.pem) to the data folder inside the sketch folder then run the data uploader tool (<em>Tools</em> -&gt; <em>ESP8266 LittleFS Data Upload</em>) to install the certificates on the device filesystem.  The SSL library on the ESP does not provide a mechanism to enter a password for the key, so the version of the key without the password needs to be provided.  Remember to close the Serial Monitor window before running the data upload tool.</p>
+<h3 id="step-3-modify-the-application-to-use-the-client-certificate-and-key">Step 3 - Modify the application to use the client certificate and key</h3>
+<p>Now you can modify the code to load the certificates and add them to the connection:</p>
+<p>Add two more #define statements containing the names of the key and certificate:</p>
+<pre><code class="C++">#define KEY_FILE &quot;/SecuredDev01_key_nopass.pem&quot;
+#define CERT_FILE &quot;/SecuredDev01_crt.pem&quot;
+</code></pre>
+
+<p>Add two more variable declarations to hold the additional certificates:</p>
+<pre><code class="C++">BearSSL::X509List *clientCert;
+BearSSL::PrivateKey *clientKey;
+</code></pre>
+
+<p>then update the code within the setup() function to load the additional key and certificate:</p>
+<pre><code class="C++">  char *client_cert = nullptr;
+  char *client_key = nullptr;
+
+  // Get cert(s) from file system
+  LittleFS.begin();
+  File ca = LittleFS.open(CA_CERT_FILE, &quot;r&quot;);
+  if(!ca) {
+    Serial.println(&quot;Couldn't load CA cert&quot;);
+  } else {
+    size_t certSize = ca.size();
+    ca_cert = (char *)malloc(certSize);
+    if (certSize != ca.readBytes(ca_cert, certSize)) {
+      Serial.println(&quot;Loading CA cert failed&quot;);
+    } else {
+      Serial.println(&quot;Loaded CA cert&quot;);
+      rootCert = new BearSSL::X509List(ca_cert);
+      wifiClient.setTrustAnchors(rootCert);
+    }
+    free(ca_cert);
+    ca.close();
+  }
+
+  File key = LittleFS.open(KEY_FILE, &quot;r&quot;);
+  if(!key) {
+    Serial.println(&quot;Couldn't load key&quot;);
+  } else {
+    size_t keySize = key.size();
+    client_key = (char *)malloc(keySize);
+    if (keySize != key.readBytes(client_key, keySize)) {
+      Serial.println(&quot;Loading key failed&quot;);
+    } else {
+      Serial.println(&quot;Loaded key&quot;);
+      clientKey = new BearSSL::PrivateKey(client_key);
+    }
+    free(client_key);
+    key.close();
+  }
+
+  File cert = LittleFS.open(CERT_FILE, &quot;r&quot;);
+  if(!cert) {
+    Serial.println(&quot;Couldn't load cert&quot;);
+  } else {
+    size_t certSize = cert.size();
+    client_cert = (char *)malloc(certSize);
+    if (certSize != cert.readBytes(client_cert, certSize)) {
+      Serial.println(&quot;Loading client cert failed&quot;);
+    } else {
+      Serial.println(&quot;Loaded client cert&quot;);
+      clientCert = new BearSSL::X509List(client_cert);
+    }
+    free(client_cert);
+    cert.close();
+  }
+
+  wifiClient.setClientRSACert(clientCert, clientKey);
+</code></pre>
+
+<h3 id="step-4-run-the-application">Step 4 - Run the application</h3>
+<p>Save, compile and upload the sketch to the device and verify the device connects.</p>
+<h3 id="step-5-configure-the-security-policy-on-the-iot-platform">Step 5 - Configure the security policy on the IoT platform</h3>
+<p>You now have client certificates working with the device, so can now choose how you want devices to be verified.  If you open the IoT Platform console and got to the settings section then the Connection Security section and Open Connection Security Policy you see you have a number of options:</p>
+<ul>
+<li>TLS Optional</li>
+<li>TLS with Token Authentication</li>
+<li>TLS with Client Certificate Authentication</li>
+<li>TLS with Client Certificate AND Token Authentication</li>
+<li>TLS with Client Certificate OR Token Authentication</li>
+</ul>
+<p>You can now decide what policy you want.  If you don't want to use Token Authentication then change the <strong>connect()</strong> function call and omit the user and token information:</p>
+<ul>
+<li>with token authentication : <code>if (mqtt.connect(MQTT_DEVICEID, MQTT_USER, MQTT_TOKEN)) {</code></li>
+<li>without token authentication : <code>if (mqtt.connect(MQTT_DEVICEID)) {</code></li>
+</ul>
+<p>You will also see that you can create Custom Rules in addition to the Default Rule.  This allows different device types to have a different policy . If a device type doesn't match a custom rule then the default rule is used.</p>
+<h3 id="solution-code">Solution Code</h3>
+<p>The finished application should look like this:</p>
+<pre><code class="C++">#include &lt;LittleFS.h&gt;
+#include &lt;ESP8266WiFi.h&gt;
+#include &lt;time.h&gt;
+#include &lt;Adafruit_NeoPixel.h&gt;
+#include &lt;DHT.h&gt;
+#include &lt;ArduinoJson.h&gt;
+#include &lt;PubSubClient.h&gt;
+
+// --------------------------------------------------------------------------------------------
+//        UPDATE CONFIGURATION TO MATCH YOUR ENVIRONMENT
+// --------------------------------------------------------------------------------------------
+
+// Watson IoT connection details
+#define MQTT_HOST &quot;z53u40.messaging.internetofthings.ibmcloud.com&quot;
+#define MQTT_PORT 8883
+#define MQTT_DEVICEID &quot;d:z53u40:ESP8266:dev01&quot;
+#define MQTT_USER &quot;use-token-auth&quot;
+#define MQTT_TOKEN &quot;password&quot;
+#define MQTT_TOPIC &quot;iot-2/evt/status/fmt/json&quot;
+#define MQTT_TOPIC_DISPLAY &quot;iot-2/cmd/display/fmt/json&quot;
+#define CA_CERT_FILE &quot;/rootCA_certificate.pem&quot;
+#define KEY_FILE &quot;/SecuredDev01_key_nopass.pem&quot;
+#define CERT_FILE &quot;/SecuredDev01_crt.pem&quot;
+
+// Add GPIO pins used to connect devices
+#define RGB_PIN 5 // GPIO pin the data line of RGB LED is connected to
+#define DHT_PIN 4 // GPIO pin the data line of the DHT sensor is connected to
+
+// Specify DHT11 (Blue) or DHT22 (White) sensor
+#define DHTTYPE DHT11
+#define NEOPIXEL_TYPE NEO_RGB + NEO_KHZ800
+
+// Temperatures to set LED by (assume temp in C)
+#define ALARM_COLD 0.0
+#define ALARM_HOT 30.0
+#define WARN_COLD 10.0
+#define WARN_HOT 25.0
+
+//Timezone info
+#define TZ_OFFSET -5  //Hours timezone offset to GMT (without daylight saving time)
+#define TZ_DST    60  //Minutes timezone offset for Daylight saving
+
+// Add WiFi connection information
+char ssid[] = &quot;SSID&quot;;     //  your network SSID (name)
+char pass[] = &quot;WiFi_password&quot;;  // your network password
+
+
+// --------------------------------------------------------------------------------------------
+//        SHOULD NOT NEED TO CHANGE ANYTHING BELOW THIS LINE
+// --------------------------------------------------------------------------------------------
+Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1, RGB_PIN, NEOPIXEL_TYPE);
+DHT dht(DHT_PIN, DHTTYPE);
+
+
+// MQTT objects
+void callback(char* topic, byte* payload, unsigned int length);
+BearSSL::WiFiClientSecure wifiClient;
+PubSubClient mqtt(MQTT_HOST, MQTT_PORT, callback, wifiClient);
+
+BearSSL::X509List *rootCert;
+BearSSL::X509List *clientCert;
+BearSSL::PrivateKey *clientKey;
+
+// variables to hold data
+StaticJsonDocument&lt;100&gt; jsonDoc;
+JsonObject payload = jsonDoc.to&lt;JsonObject&gt;();
+JsonObject status = payload.createNestedObject(&quot;d&quot;);
+static char msg[50];
+
+float h = 0.0;
+float t = 0.0;
+
+unsigned char r = 0;
+unsigned char g = 0;
+unsigned char b = 0;
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  // handle message arrived
+  Serial.print(&quot;Message arrived [&quot;);
+  Serial.print(topic);
+  Serial.print(&quot;] : &quot;);
+
+  payload[length] = 0; // ensure valid content is zero terminated so can treat as c-string
+  Serial.println((char *)payload);
+}
+
+void setup() {
+  char *ca_cert = nullptr;
+  char *client_cert = nullptr;
+  char *client_key = nullptr;
+
+ // Start serial console
+  Serial.begin(115200);
+  Serial.setTimeout(2000);
+  while (!Serial) { }
+  Serial.println();
+  Serial.println(&quot;ESP8266 Sensor Application&quot;);
+
+  // Start WiFi connection
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, pass);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(&quot;.&quot;);
+  }
+  Serial.println(&quot;&quot;);
+  Serial.println(&quot;WiFi Connected&quot;);
+
+  // Start connected devices
+  dht.begin();
+  pixel.begin();
+
+  // Get certs from file system and load into WiFiSecure client
+  LittleFS.begin();
+  File ca = LittleFS.open(CA_CERT_FILE, &quot;r&quot;);
+  if(!ca) {
+    Serial.println(&quot;Couldn't load CA cert&quot;);
+  } else {
+    size_t certSize = ca.size();
+    ca_cert = (char *)malloc(certSize);
+    if (certSize != ca.readBytes(ca_cert, certSize)) {
+      Serial.println(&quot;Loading CA cert failed&quot;);
+    } else {
+      Serial.println(&quot;Loaded CA cert&quot;);
+      rootCert = new BearSSL::X509List(ca_cert);
+      wifiClient.setTrustAnchors(rootCert);
+    }
+    free(ca_cert);
+    ca.close();
+  }
+
+  File key = LittleFS.open(KEY_FILE, &quot;r&quot;);
+  if(!key) {
+    Serial.println(&quot;Couldn't load key&quot;);
+  } else {
+    size_t keySize = key.size();
+    client_key = (char *)malloc(keySize);
+    if (keySize != key.readBytes(client_key, keySize)) {
+      Serial.println(&quot;Loading key failed&quot;);
+    } else {
+      Serial.println(&quot;Loaded key&quot;);
+      clientKey = new BearSSL::PrivateKey(client_key);
+    }
+    free(client_key);
+    key.close();
+  }
+
+  File cert = LittleFS.open(CERT_FILE, &quot;r&quot;);
+  if(!cert) {
+    Serial.println(&quot;Couldn't load cert&quot;);
+  } else {
+    size_t certSize = cert.size();
+    client_cert = (char *)malloc(certSize);
+    if (certSize != cert.readBytes(client_cert, certSize)) {
+      Serial.println(&quot;Loading client cert failed&quot;);
+    } else {
+      Serial.println(&quot;Loaded client cert&quot;);
+      clientCert = new BearSSL::X509List(client_cert);
+    }
+    free(client_cert);
+    cert.close();
+  }
+
+  wifiClient.setClientRSACert(clientCert, clientKey);
+
+  // Set time from NTP servers
+  configTime(TZ_OFFSET * 3600, TZ_DST * 60, &quot;pool.ntp.org&quot;, &quot;0.pool.ntp.org&quot;);
+  Serial.println(&quot;\nWaiting for time&quot;);
+  unsigned timeout = 5000;
+  unsigned start = millis();
+  while (millis() - start &lt; timeout) {
+      time_t now = time(nullptr);
+      if (now &gt; (2018 - 1970) * 365 * 24 * 3600) {
+          break;
+      }
+      delay(100);
+  }
+  delay(1000); // Wait for time to fully sync
+  Serial.println(&quot;Time sync'd&quot;);
+  time_t now = time(nullptr);
+  Serial.println(ctime(&amp;now));
+
+  // Connect to MQTT - IBM Watson IoT Platform
+   while(! mqtt.connected()){
+    if (mqtt.connect(MQTT_DEVICEID, MQTT_USER, MQTT_TOKEN)) { // Token Authentication
+//    if (mqtt.connect(MQTT_DEVICEID)) { // No Token Authentication
+      Serial.println(&quot;MQTT Connected&quot;);
+      mqtt.subscribe(MQTT_TOPIC_DISPLAY);
+    } else {
+      Serial.print(&quot;last SSL Error = &quot;);
+      Serial.print(wifiClient.getLastSSLError(msg, 50));
+      Serial.print(&quot; : &quot;);
+      Serial.println(msg);
+      Serial.println(&quot;MQTT Failed to connect! ... retrying&quot;);
+      delay(500);
+    }
+  }
+}
+
+void loop() {
+  mqtt.loop();
+  while (!mqtt.connected()) {
+    Serial.print(&quot;Attempting MQTT connection...&quot;);
+    // Attempt to connect
+    if (mqtt.connect(MQTT_DEVICEID, MQTT_USER, MQTT_TOKEN)) { // Token Authentication
+//    if (mqtt.connect(MQTT_DEVICEID)) { // No Token Authentication
+      Serial.println(&quot;MQTT Connected&quot;);
+      mqtt.subscribe(MQTT_TOPIC_DISPLAY);
+      mqtt.loop();
+    } else {
+      Serial.print(&quot;last SSL Error = &quot;);
+      Serial.print(wifiClient.getLastSSLError(msg, 50));
+      Serial.print(&quot; : &quot;);
+      Serial.println(msg);
+      Serial.println(&quot;MQTT Failed to connect! ... retrying&quot;);
+      delay(500);
+    }
+  }
+  h = dht.readHumidity();
+  t = dht.readTemperature(); // uncomment this line for centigrade
+  // t = dht.readTemperature(true); // uncomment this line for Fahrenheit
+
+  // Check if any reads failed and exit early (to try again).
+  if (isnan(h) || isnan(t)) {
+    Serial.println(&quot;Failed to read from DHT sensor!&quot;);
+  } else {
+    // Set RGB LED Colour based on temp
+    b = (t &lt; ALARM_COLD) ? 255 : ((t &lt; WARN_COLD) ? 150 : 0);
+    r = (t &gt;= ALARM_HOT) ? 255 : ((t &gt; WARN_HOT) ? 150 : 0);
+    g = (t &gt; ALARM_COLD) ? ((t &lt;= WARN_HOT) ? 255 : ((t &lt; ALARM_HOT) ? 150 : 0)) : 0;
+    pixel.setPixelColor(0, r, g, b);
+    pixel.show();
+
+    // Send data to Watson IoT Platform
+    status[&quot;temp&quot;] = t;
+    status[&quot;humidity&quot;] = h;
+    serializeJson(jsonDoc, msg, 50);
+    Serial.println(msg);
+    if (!mqtt.publish(MQTT_TOPIC, msg)) {
+      Serial.println(&quot;MQTT Publish failed&quot;);
+    }
+  }
+  // Pause - but keep polling MQTT for incoming messages
+  for (int i = 0; i &lt; 10; i++) {
+    mqtt.loop();
+    delay(1000);
+  }
+}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

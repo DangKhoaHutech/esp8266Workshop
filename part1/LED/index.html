@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part1/LED/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>LED Light - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../WIFI/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../DHT/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part1/LED.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#controlling-the-rgb-led-from-the-esp8266" class="nav-link">Controlling the RGB LED from the ESP8266</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="controlling-the-rgb-led-from-the-esp8266">Controlling the RGB LED from the ESP8266</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this Lab you will connect the NeoPixel LED and learn how to control it from the ESP8266.  You will learn:</p>
+<ul>
+<li>The electrical connections of the LED and how to connect to the ESP8266</li>
+<li>The library used to control the neopixel</li>
+<li>How to add new libraries to the Arduino IDE</li>
+<li>How to use the neopixel Library and access documentation for additional features</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>During the last practical we used the ESPWiFi library that was installed as part of the plugin but now we want to control a neopixel RGB LED that we will connect to the ESP8266.  One of the advantages of using Arduino is that there are many libraries available, so most common hardware will usually have an Arduino library available, so you won't need to implement the low-level control protocol for a device.</p>
+<p>You need to be careful to ensure that any library you choose supports the hardware you are running on.  Initially the Arduino platform was created around AVR microprocessors and many libraries were written to directly interact with AVR processors, so are incompatible when targeting a different processor.  Looking at the Arduino ESP8266 documentation there is a <a href="http://arduino-esp8266.readthedocs.io/en/latest/libraries.html#other-libraries-not-included-with-the-ide">list of libraries</a> known to work with ESP8266.</p>
+<h3 id="step-1-adding-a-library-to-the-arduino-ide">Step 1 - Adding a Library to the Arduino IDE</h3>
+<p>Looking at the list, there is a compatible NeoPixel library available for the neopixel.  To install a library into the Arduino IDE you can use the Library Manager.  From the menu select <em>Sketch</em> -&gt; <em>Include Library</em> -&gt; <em>Manage Libraries...</em> to bring up the Library Manager.  In the search box enter NeoPixel to find libraries matching the search.  You can see there are a number of libraries available, but you want to find the <strong>Adafruit NeoPixel by Adafruit</strong>, then select the entry and click install to install the library. Once the library in installed click <strong>close</strong> to close the Library Manager.</p>
+<h3 id="step-2-connecting-the-neopixel-to-the-esp8266-board">Step 2 - Connecting the Neopixel to the ESP8266 board</h3>
+<p>Now you need to connect the NeoPixel to the ESP8266.  Before you start making any connections please disconnect the device from your laptop/workstation so there is no power getting to the device.  You should never make any connection changes when the device is powered on.</p>
+<p>Before making the connections we need to identify the 4 connecting pins coming out of the LED.  If you examine the rim of the pixel cover you will see that one side is flattened (this should be the opposite side from the shortest pin) - this pin next to the flattened side is the <strong>Data Out</strong> pin.  We will not be using this pin, as we only have a single pixel.  You can chain pixels together connecting the <strong>Data Out</strong> pin to the <strong>Data In</strong> pin of the next pixel in the chain.</p>
+<p>The shortest pin on the Pixel is the <strong>Data In</strong>
+The longest pin on the Pixel is <strong>Ground</strong>
+The remaining pin is <strong>+'ve voltage</strong>, which should be 5v, but it works with 3.3v that the ESP8266 board provides.</p>
+<p>So, with the shortest pin on the left and the flat side on the right the pinout is (left to right):</p>
+<ul>
+<li>Data In (shortest pin)</li>
+<li>+'ve Voltage</li>
+<li>Gnd (longest pin)</li>
+<li>Data Out (no connection)</li>
+</ul>
+<p>You need to connect the Data In, +'ve voltage and ground to the ESP8266 board as shown in the diagram.  Take care to ensure that the connections are as shown, as connecting the wrong pins can damage the ESP8266 board and/or the LED:</p>
+<p><img alt="ModeMCU LED Wiring" src="../../images/NodeMCU_LED_Wiring.jpg" /></p>
+<h3 id="step-3-load-an-example-sketch">Step 3 - Load an example sketch</h3>
+<p>Once you have the connections made you can connect the board to your laptop.  Load the example sketch <strong>strandtest</strong> <em>File</em> -&gt; <em>Examples</em> -&gt; <em>AdaFruit Neopixel</em> -&gt; <em>strandtest</em>.  You need to make a couple of changes to the example sketch:</p>
+<ol>
+<li>Change the LED_PIN number to 5.  D1 on the NodeMCU board maps to GPIO5 on the ESP8266 processor - see the <a href="https://circuits4you.com/2017/12/31/nodemcu-pinout/">pinout</a></li>
+<li>Set the number of pixels to 1 in the LED_COUNT definition</li>
+<li>In the loop function comment out the 4 lines starting with <strong>theaterChase</strong> as these cause rapid flashing when only a single LED is connected, which is not pleasant to look at</li>
+</ol>
+<p>When you save the file you should be prompted to save it as a new file (you cannot override example files, so need to save them to another location to be able to modify them).</p>
+<p>Compile and upload the sketch to see the LED change colours.</p>
+<p>The top of your code should look like this:</p>
+<pre><code class="cpp">#include &lt;Adafruit_NeoPixel.h&gt;
+#ifdef __AVR__
+ #include &lt;avr/power.h&gt; // Required for 16 MHz Adafruit Trinket
+#endif
+
+// Which pin on the Arduino is connected to the NeoPixels?
+// On a Trinket or Gemma we suggest changing this to 1:
+#define LED_PIN    5
+
+// How many NeoPixels are attached to the Arduino?
+#define LED_COUNT 1
+
+// Declare our NeoPixel strip object:
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+// Argument 1 = Number of pixels in NeoPixel strip
+// Argument 2 = Arduino pin number (most are valid)
+// Argument 3 = Pixel type flags, add together as needed:
+//   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)
+//   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
+//   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
+//   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
+//   NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
+
+
+// setup() function -- runs once at startup --------------------------------
+
+void setup() {
+  // These lines are specifically to support the Adafruit Trinket 5V 16 MHz.
+  // Any other board, you can remove this part (but no harm leaving it):
+#if defined(__AVR_ATtiny85__) &amp;&amp; (F_CPU == 16000000)
+  clock_prescale_set(clock_div_1);
+#endif
+  // END of Trinket-specific code.
+
+  strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
+  strip.show();            // Turn OFF all pixels ASAP
+  strip.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
+}
+
+
+// loop() function -- runs repeatedly as long as board is on ---------------
+
+void loop() {
+  // Fill along the length of the strip in various colors...
+  colorWipe(strip.Color(255,   0,   0), 50); // Red
+  colorWipe(strip.Color(  0, 255,   0), 50); // Green
+  colorWipe(strip.Color(  0,   0, 255), 50); // Blue
+
+  // Do a theater marquee effect in various colors...
+  //theaterChase(strip.Color(127, 127, 127), 50); // White, half brightness
+  //theaterChase(strip.Color(127,   0,   0), 50); // Red, half brightness
+  //theaterChase(strip.Color(  0,   0, 127), 50); // Blue, half brightness
+
+  rainbow(10);             // Flowing rainbow cycle along the whole strip
+  //theaterChaseRainbow(50); // Rainbow-enhanced theaterChase variant
+}
+</code></pre>
+
+<h3 id="step-4-understanding-how-use-the-neopixel-library">Step 4 -  Understanding how use the neopixel library</h3>
+<p>To add the NeoPixel to your own application you need to do the following:</p>
+<ol>
+<li>Create an instance of a Neopixel <code>Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);</code><ul>
+<li>The first parameter is the number of pixels in the chain</li>
+<li>the second parameter is the GPIO number the pixel(s) are connected to</li>
+<li>The third parameter allows you to identify what type of pixel is connected.  There are a number of different types of pixel.  Some include a white LED to give a better white light.  Some expect the green data to be sent first whilst others require the red data to be sent first.  There are also different communication speeds used.</li>
+</ul>
+</li>
+<li>Before using any commands to alter the pixels you need to initialise the pixel library using the <strong>begin()</strong> call.  <code>strip.begin();</code>  This is usually done in the <strong>setup()</strong> function.</li>
+<li>Set the pixels to the desired colours (note: this doesn't change the pixel colours immediately)<ul>
+<li>There are a number of calls in the neopixel library to be able to set the colour of a pixel.  The first parameter always is the number of the pixel you want to set in the chain (starting with 0 as the first pixel):<ul>
+<li><code>setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b)</code></li>
+<li><code>setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b, uint8_t w)</code></li>
+<li><code>setPixelColor(uint16_t n, uint32_t c)</code></li>
+</ul>
+</li>
+<li>There are 2 ways to specify a colour to the <strong>setPixelColor()</strong> call.  You can pass in the red, green, blue and optionally white values (0 - 255) for each of the LEDs within the pixel or use the <strong>Color()</strong> function to create a single 32bit integer value representing a colour.  This can be useful for passing to and returning from other function calls, as shown in the example sketch:<ul>
+<li><code>Color(uint8_t r, uint8_t g, uint8_t b)</code></li>
+<li><code>Color(uint8_t r, uint8_t g, uint8_t b, uint8_t w)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Call the <strong>show()</strong> function to send the colour changes to the pixel(s) : <code>strip.show();</code>.  This is the function that actually updates the pixels based on the previous setPixelColor function calls.</li>
+</ol>
+<p>For any library installed with the Arduino Library Manager you can get to the documentation for the library using the <strong>More info</strong> link in the Library Manager:</p>
+<p><img alt="ModeMCU LED Wiring" src="../../images/LibraryManagerInfo.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part4/STUDIO/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Watson Studio - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part1/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../../part1/IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../TRAINING/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part4/STUDIO.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#watson-studio-set-up-and-configuration-in-ibm-cloud" class="nav-link">Watson Studio Set up and Configuration in IBM Cloud</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="watson-studio-set-up-and-configuration-in-ibm-cloud">Watson Studio Set up and Configuration in IBM Cloud</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>In this lab you will set up Watson Studio with a new Project.  You will learn:</p>
+<ul>
+<li>Watson Studio</li>
+<li>How to set up a new Watson Studio Project</li>
+<li>How to create a Jupyter Notebook</li>
+</ul>
+<h3 id="introduction">Introduction</h3>
+<p>Watson Studio accelerates the machine and deep learning workflows required to infuse AI into your business to drive innovation. It provides a suite of tools for data scientists, application developers and subject matter experts, allowing them to collaboratively connect to data, wrangle that data and use it to build, train and deploy models at scale. Successful AI projects require a combination of algorithms + data + team, and a very powerful compute infrastructure.</p>
+<ul>
+<li>Learn more from the Experts - <a href="https://medium.com/ibm-watson/introducing-ibm-watson-studio-e93638f0bb47">Introducing IBM Watson Studio</a></li>
+</ul>
+<h3 id="step-1-watson-studio-setup">Step 1 - Watson Studio Setup</h3>
+<p>Watson Studio needs a data store to enable it to work and it uses the Cloud Object Storage service, so you need an instance of that service available.  On a lite account you can only have a single instance of this service deployed, so if you already have an Object Storage service deployed then you will need to use that, otherwise you can deploy one when you create your notebook.</p>
+<h4 id="create-a-watson-studio-service-instance">Create a Watson Studio service instance</h4>
+<ul>
+<li>Create a <strong>Watson Studio</strong> service instance from the <a href="https://console.bluemix.net/catalog/?search=studio">IBM Cloud Catalog</a></li>
+<li>Search on <strong>Studio</strong> in the IBM Cloud Catalog</li>
+</ul>
+<p><img alt="Watson Studio Catalog screenshot" src="../screenshots/WatsonStudio-Catalog.png" /></p>
+<ul>
+<li>Click on the <strong>Watson Studio</strong> service tile</li>
+</ul>
+<p><img alt="Watson Studio Service screenshot" src="../screenshots/WatsonStudio-Service.png" /></p>
+<ul>
+<li>Click on the <strong>Create</strong> button</li>
+<li>After the Watson Studio service is created, click on <strong>Get Started</strong></li>
+</ul>
+<p><img alt="Watson Studio Launch screenshot" src="../screenshots/WatsonStudio-Launch.png" /></p>
+<ul>
+<li>Optionally, walk through the introductory tutorial to learn about Watson Studio</li>
+</ul>
+<p><img alt="Watson Studio Welcome screenshot" src="../screenshots/WatsonStudio-Welcome.png" /></p>
+<h3 id="step-2-create-a-new-project">Step 2 - Create a New Project</h3>
+<p>Projects are your workspace to organize your resources, such as assets like data, collaborators, and analytic tools like notebooks and models</p>
+<h4 id="create-a-new-project">Create a New Project</h4>
+<ul>
+<li>Click on <strong>Create a project</strong></li>
+</ul>
+<p><img alt="Watson Studio Welcome screenshot" src="../screenshots/WatsonStudio-Welcome.png" /></p>
+<ul>
+<li>Select the <strong>Create an empty project</strong> tile</li>
+</ul>
+<p><img alt="Watson Studio New project screenshot" src="../screenshots/WatsonStudio-CreateNewProject.png" /></p>
+<ul>
+<li>Give your Project a name : <strong>IoT Sensor Analytics</strong></li>
+<li>If you already have a Cloud Object Storage instance then it should be selected</li>
+</ul>
+<p><img alt="Watson Studio New project screenshot" src="../screenshots/WatsonStudio-NewProject.png" /></p>
+<ul>
+<li>if you don't have a Cloud Object Storage instance, then press the <strong>Add</strong> button to create one.  Ensure the Lite plan is selected then select <strong>Create</strong> then <strong>Confirm</strong> to create the instance.  Press the <strong>Refresh</strong> button to get the Cloud Storage instance to show up as the selected storage for your new Watson Studio project.</li>
+</ul>
+<p><img alt="Watson Studio New project screenshot" src="../screenshots/WatsonStudio-AddStorage.png" /></p>
+<ul>
+<li>Press the <strong>Create</strong> button to create the New Watson Studio project</li>
+</ul>
+<h3 id="step-3-create-a-notebook">Step 3 - Create a Notebook</h3>
+<ul>
+<li>From the top menu, select <strong>Add to project</strong>, and then <strong>Notebook</strong></li>
+<li>Select <strong>Blank</strong></li>
+<li>Give the notebook a name : <strong>IoT Sensor Analytics</strong></li>
+<li>Scroll down to the <strong>Select runtime</strong> dropdown and choose <strong>Default Spark Python 3.6 XS (Driver with 1 vCPU and 4 GB RAM, 2 executors with 1 vCPU and 4 GB RAM each</strong> runtime</li>
+</ul>
+<p><img alt="Watson Studio New notebook screenshot" src="../screenshots/WatsonStudio-NewNotebook.png" /></p>
+<ul>
+<li>Click on <strong>Create Notebook</strong></li>
+</ul>
+<p><img alt="Watson Studio New notebook screenshot" src="../screenshots/WatsonStudio-NewNotebook-install.png" /></p>
+<p>You are now ready to create the training data we will use, so proceed to the next <a href="../TRAINING/">Training Data section</a>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

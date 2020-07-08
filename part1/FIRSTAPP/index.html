@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part1/FIRSTAPP/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Intro to ESP8266 - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../PREREQ/" class="dropdown-item">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../PREREQ/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../WIFI/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part1/FIRSTAPP.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#your-first-esp8266-application" class="nav-link">Your first ESP8266 application</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="your-first-esp8266-application">Your first ESP8266 application</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>This Lab will show you how to use the Arduino IDE with the ESP8266 plugin to create a new application for the ESP8266 board.  You will learn how:</p>
+<ul>
+<li>Ensure you have the correct settings in the IDE</li>
+<li>How to compile source code into a binary</li>
+<li>How to upload a binary onto the board</li>
+<li>You should also take time to understand the flow of an Arduino application, and the purpose of the <strong>setup()</strong> and <strong>loop()</strong> functions.</li>
+</ul>
+<h3 id="step-1-setting-up-the-arduino-environment-for-the-esp8266">Step 1 - Setting up the Arduino environment for the ESP8266</h3>
+<p>Let's start with a simple application to display information about the flash memory.  Start by setting up your Arduino IDE to the correct settings for the board.  Using the <em>Tools</em> menu, ensure the following settings are set:</p>
+<ul>
+<li>Board : <strong>NodeMCU 1.0 (ESP-12E Module)</strong></li>
+<li>Upload Speed : <strong>115200</strong></li>
+<li>CPU Frequency : <strong>160 MHz</strong></li>
+<li>Flash Size : <strong>4M (FS:1M OTA~1019KB)</strong></li>
+<li>Debug Port : <strong>Disabled</strong></li>
+<li>Debug Level : <strong>None</strong></li>
+<li>IwIP Variant : <strong>v2 Lower Memory</strong></li>
+<li>vTables: <strong>Flash</strong></li>
+<li>Exceptions: <strong>Disabled</strong></li>
+<li>Erase Flash : <strong>Only Sketch</strong></li>
+<li>SSL Support : <strong>Basic SSL ciphers (lower ROM use)</strong></li>
+<li>Port : <em>Connect the ESP8266 to your laptop using a MicroUSB cable and then select your port, depending on OS</em></li>
+</ul>
+<h3 id="step-2-loading-an-example-sketch">Step 2 - Loading an example sketch</h3>
+<p>Then choose <em>File</em> -&gt; <em>Examples</em> -&gt; <em>ESP8266</em> -&gt; <em>CheckFlashConfig</em> from the menu to open a new window with the sample sketch preloaded (you can close the previous window as it is not needed).</p>
+<h3 id="step-3-compiling-the-sketch">Step 3 - Compiling the sketch</h3>
+<p><img alt="Verify command" src="../../images/verify.png" /></p>
+<p>You can now compile the sketch for the ESP8266 by selecting the <strong>Verify</strong> button on the command bar (tick icon) or using the <em>sketch</em> -&gt; <em>Verify/Compile</em> menu option.  You will see there are keyboard short cuts for various commands, shown next to the menu option which you may want to learn and use.</p>
+<h3 id="step-4-uploading-the-sketch">Step 4 - Uploading the sketch</h3>
+<p><img alt="Upload command" src="../../images/upload.png" /></p>
+<p>Once the compile has finished you can upload the new application to your ESP8266 using the <strong>upload</strong> button on the command bar (arrow to right icon) or using the <em>Sketch</em> -&gt; <em>Upload</em> menu option.</p>
+<p><em>Note</em>: <em>you don't need to compile then upload.  Just using upload will compile the application if necessary then upload it to the ESP8266</em></p>
+<p>If you try to save the sketch you will be prompted to enter a name/location for the sketch.  This is because the example sketches are read-only, if you want to modify them and save the modification you need to save it to a new location.</p>
+<p>This example sketch prints out information about the flash memory on board the ESP8266.  To see the output you need to open up the Serial Monitor.</p>
+<p><img alt="Serial Monitor" src="../../images/SerialMonitor.png" /></p>
+<p>Ensure the baud rate at the bottom of the monitor window matches the baud rate in the setup function of the sketch <code>Serial.begin(115200);</code>.</p>
+<h3 id="step-5-understand-the-example-sketch">Step 5 - Understand the example sketch</h3>
+<p>The Arduino IDE and runtime take care of the work needed to setup the runtime for an application and provides 2 entry points.  A <strong>setup()</strong> function, which is called at the start of the application, or when the device comes out of a deep sleep.  The other entry point is the <strong>loop()</strong> function which is repeatedly called so long as the device is running.</p>
+<p>There is no operating system running under the Arduino application, the code you enter in setup and loop is all that is running on the ESP8266 CPU.</p>
+<p>This example sketch initialises the Serial connection in the <strong>setup()</strong> function then retrieves and prints information about the flash memory to the Serial console in the <strong>loop()</strong> function.  At the end of the <strong>loop()</strong> function there is a delay for 5 seconds (5000 milliseconds).  After the delay the <strong>loop()</strong> function ends, but is immediately called again.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

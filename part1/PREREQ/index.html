@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://binnes.github.io/esp8266Workshop/part1/PREREQ/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Setup for the Workshop - ESP8266 IoT Workshop</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ESP8266 IoT Workshop</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 1 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Setup for the Workshop</a>
+</li>
+                                    
+<li>
+    <a href="../FIRSTAPP/" class="dropdown-item">Intro to ESP8266</a>
+</li>
+                                    
+<li>
+    <a href="../WIFI/" class="dropdown-item">ESP8266 WiFi</a>
+</li>
+                                    
+<li>
+    <a href="../LED/" class="dropdown-item">LED Light</a>
+</li>
+                                    
+<li>
+    <a href="../DHT/" class="dropdown-item">Sensor</a>
+</li>
+                                    
+<li>
+    <a href="../IOTCLOUD/" class="dropdown-item">IBM Cloud</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 2 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part2/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/DEVICE/" class="dropdown-item">Device setup on Cloud</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/APP/" class="dropdown-item">Creating the ESP8266 Application</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/MQTT/" class="dropdown-item">Intro to MQTT</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT1/" class="dropdown-item">IoT Security</a>
+</li>
+                                    
+<li>
+    <a href="../../part2/CERT2/" class="dropdown-item">Client Certificates</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 3 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part3/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/NODERED/" class="dropdown-item">Node-RED</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DHTDATA/" class="dropdown-item">Sensor Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/DASHBOARD/" class="dropdown-item">Dashboards</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/CLOUDANT/" class="dropdown-item">Database</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/HISTORY/" class="dropdown-item">Historical Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/INTERVAL/" class="dropdown-item">Reporting interval</a>
+</li>
+                                    
+<li>
+    <a href="../../part3/LED/" class="dropdown-item">Remote LED control</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Part 4 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../part4/" class="dropdown-item">Intro</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/STUDIO/" class="dropdown-item">Watson Studio</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/TRAINING/" class="dropdown-item">Create Training Data</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/JUPYTER/" class="dropdown-item">Jupyter Notebooks</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/MODEL/" class="dropdown-item">Run model on device</a>
+</li>
+                                    
+<li>
+    <a href="../../part4/SUMMARY/" class="dropdown-item">Workshop Summary</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../FIRSTAPP/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/binnes/esp8266Workshop/edit/master/docs/part1/PREREQ.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#installing-the-prerequisite-software-and-getting-your-cloud-account-setup" class="nav-link">Installing the prerequisite software and getting your cloud account setup</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#lab-objectives" class="nav-link">Lab Objectives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#esp8266-development" class="nav-link">ESP8266 development</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#installing-the-required-software" class="nav-link">Installing the required software</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ensure-you-have-a-working-ibm-cloud-account" class="nav-link">Ensure you have a working IBM Cloud account</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="installing-the-prerequisite-software-and-getting-your-cloud-account-setup">Installing the prerequisite software and getting your cloud account setup</h1>
+<h2 id="lab-objectives">Lab Objectives</h2>
+<p>This Lab will ensure you have all the resources and software needed to complete the lab installed.  You should follow the instructions for your OS and complete all sections of the setup before moving forward with the Lab.</p>
+<h2 id="esp8266-development">ESP8266 development</h2>
+<p>To be able to complete the workshop you need to purchase the required hardware and install the required software to your laptop or workstation.  You also need an active IBM Cloud account and a suitable WiFi environment:</p>
+<h3 id="wifi">WiFi</h3>
+<p>The ESP8266 can connect to a 2.4GHz network supporting 802.11 b/g/n.  The ESP8266 will not work with 5GHz frequencies (802.11 ac).</p>
+<p>As there is no ability to launch a browser on the ESP8266, so you cannot work with WiFi networks needing a browser to be able to enter credentials, which is a mechanism often used in public spaces, such as hotels.</p>
+<p>The workshop does not support advanced authentication, such as using LDAP or certificates to authenticate to the network.  You should have a network that uses an access token/password, such as WPA/WPA2 - this is what most home WiFi access points provide.</p>
+<p>Many corporate networks are difficult to connect IoT devices to, as they can be tightly secured, often requiring certificates to be installed.</p>
+<p>If a suitable network is not available then smart Phone hotspots can be used to provide connectivity. The workshop does not require large amounts of data for the ESP8266, so is suitable for using a phone hotspot.</p>
+<p>There are no incoming ports needed for the workshop, but the ESP8266 needs to be able to connect via MQTT protocol over TCP to ports 1883 and 8883.  The workshop also need web access over TCP ports 80 and 443.  The final port that is needed is for Network Time Protocol (NTP), which uses an outbound UDP connection on port 123.</p>
+<h3 id="purchasing-the-required-hardware">Purchasing the required Hardware</h3>
+<p>You need to purchase the following hardware to work through the workshop.  The workshop instructions uses the DHT11 temperature and humidity sensor.  This can be replaced with the DHT22 sensor, which has the same pinout, but offers a more accurate sensor.  DHT11 is accurate within 2C, whilst the DHT22 is accurate to within 0.5C.</p>
+<ul>
+<li>ESP8266, (search for <strong>NodeMCU ESP8266 v3</strong> or <strong>v2</strong>)</li>
+<li>NeoPixel RGB LED (or any other chainable RGB/RGBW LED based on ws2812b or sk6812 chips ), such as <a href="https://www.adafruit.com/product/1734">this from Adafruit</a> (Search for <strong>Neopixel 8mm or 5mm</strong> - often sold in packs of 5)</li>
+<li>DHT11 Temperature / Humidity Sensor (search for <strong>DHT11 or DHT22</strong>)</li>
+<li>6 x Female to Female jumper wires (search for <strong>dupont cable f2f or f-f</strong> - usually sold in packs of 40 cables)</li>
+<li>MicroUSB cable (Please ensure it is a data cable, not just a power cable)</li>
+</ul>
+<h2 id="installing-the-required-software">Installing the required software</h2>
+<p>The following instructions have been tested against Linux (Ubuntu 18.04LTS and Fedora 27), MacOS (High Sierra) and Windows 10.  If you are using a different OS then you may need to adapt the instructions to match your installed OS.</p>
+<p>You may need admin access to your workstation to be able to install the software and drivers.</p>
+<h3 id="step-1-install-the-required-drivers">Step 1 - Install the required drivers</h3>
+<p>If you are attending an IBM face-to-face workshop, then the boards you will be using are branded LoLin and use the CH340 USB to serial chip.</p>
+<p>You may need a driver for your OS to be able to communicate with the USB to serial CH340G chip used in the ESP8266 modules.  Do not plugin the device until you have installed the driver on Windows and Mac.  The drivers can be downloaded from :</p>
+<ul>
+<li><a href="http://www.wch.cn/download/CH341SER_MAC_ZIP.html">MacOS</a> (This is the manufacturers web site, in Chinese, for the USB driver chip on the LoLin NodeNCU board - use Google Chrome to translate, or just click the download link to access the macOS driver).  <strong>After installing goto System Preferences -&gt; Security and Privacy to allow the driver to be loaded.</strong></li>
+<li>
+<p>Alternatively if you use <a href="https://brew.sh">homebrew</a> you can install the driver using command</p>
+<p><code>bash
+brew cask install homebrew/cask-drivers/wch-ch34x-usb-serial-driver</code></p>
+</li>
+<li>
+<p><a href="https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers"><strong>Win/Linux</strong></a></p>
+</li>
+</ul>
+<p>Select the appropriate one for your OS, download it, unzip it and install it.</p>
+<ul>
+<li><em>Note</em> : Linux should not need a driver installing, as it should already be installed.</li>
+</ul>
+<p>If you have your own ESP8266 module then it may not use the CH340G USB to serial chip.  Another very popular chip is the CP2102, which is used in Amica branded boards.  The drivers for this chip can be found <a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers"><strong>here</strong></a>.</p>
+<p>If you are a Mac user and use <a href="https://brew.sh">homebrew</a> then the driver can be installed using command:</p>
+<pre><code class="bash">brew cask install homebrew/cask-drivers/silicon-labs-vcp-driver
+</code></pre>
+
+<p>On Mac after the install you may need to approve the driver.  From the Apple menu, go to <strong>System Preferences -&gt; Security and Privacy</strong> to allow the driver to be loaded.</p>
+<p>When the driver is installed and the NodeMCU module is connected you can test if the driver is working:</p>
+<ul>
+<li>Linux : You will see a device appear from the command <code>ls /dev/ttyUSB*</code></li>
+<li>MacOS : You will see an additional device appear from output of command <code>ls /dev/tty.*</code></li>
+<li>Windows : You will see an additional COM port in the Ports section of the Device Manager.</li>
+</ul>
+<h3 id="step-2-install-the-arduino-ide">Step 2 - Install the Arduino IDE</h3>
+<p>The workshop will use the Arduino IDE to create applications for the ESP8266 module.   You need to have an up to date version of the Arduino IDE, available from <a href="https://www.arduino.cc/en/Main/Software"><strong>here</strong></a>.  Select the version for your OS then download and install it:</p>
+<ul>
+<li>Linux : Your linux distro may have Arduino available in the software package manager catalog, if not you can manually install it:</li>
+<li>unarchive it, move it to /opt or /usr/local (<code>sudo mv arduino-1.8.7 /opt</code>) then run <code>/opt/arduino-1.8.7/install.sh</code></li>
+<li><em>Note: you may need to change the version number if you downloaded a version newer than 1.8.7</em>.  You some Linux distros you may need to add your user to the tty and dialout groups to be able to use the connection to the device.  You can do this using command <code>sudo usermod -a -G tty,dialout $USER</code> you will have to log out and log in again to get the added permissions</li>
+<li>MacOS : simply drag Arduino app into Applications folder after unzipping)</li>
+<li>Windows : run the downloaded installer application</li>
+</ul>
+<h3 id="step-3-install-the-esp8266-plugin-for-the-arduino-ide">Step 3 - Install the ESP8266 Plugin for the Arduino IDE</h3>
+<p>Out of the box the Arduino IDE does not support ESP8266 development.  You need to add a plugin to add support.  Launch the Arduino IDE then open up the preferences panel for the Arduino IDE:</p>
+<ul>
+<li>Linux : <em>File</em> -&gt; <em>Preferences</em></li>
+<li>MacOS : <em>Arduino</em> -&gt; <em>Preferences</em></li>
+<li>Windows : <em>File</em> -&gt; <em>Preferences</em></li>
+</ul>
+<p>Paste in the URL for the ESP plugin to the <em>Additional Board Managers URLs</em> field: <code>http://arduino.esp8266.com/stable/package_esp8266com_index.json</code></p>
+<p>Select OK to close the preferences dialog.</p>
+<p>Select <em>Tools</em> -&gt; <em>Board:</em> -&gt; <em>Board Manager...</em> from the menu, then enter ESP in the search box.  This should reveal an item <strong>esp8266 by ESP8266 community</strong>.  Click inside the esp8266 box then press install to install the latest plugin.  Once installed close the board manager.</p>
+<h3 id="step-4-install-the-filesystem-upload-tool-for-esp8266">Step 4 - Install the filesystem upload tool for ESP8266</h3>
+<p>The ESP8266 has flash memory that can hold a filesystem.  There is a plugin for Arduino that allows you to generate a populated filesystem and upload it to the ESP8266 board.  The plugin can be downloaded from <a href="https://github.com/earlephilhower/arduino-esp8266littlefs-plugin/releases"><strong>here</strong></a>.  You need to create a tools directory within the sketch directory then extract the content there.</p>
+<p><img alt="tools directory" src="../../images/toolsDirectory.png" /></p>
+<p>(<em>Note: you can find the sketch directory location from the preferences panel of the Arduino IDE</em>).  The default location of the sketch directory is:</p>
+<ul>
+<li>Linux - <strong>/home/&lt; user name &gt;/Arduino/tools/ESP8266LittleFS</strong></li>
+<li>MacOS - <strong>/Users/&lt; user name &gt;/Documents/Arduino/tools/ESP8266LittleFS</strong></li>
+<li>Windows - <strong>C:\Users\&lt; user name &gt;\Documents\Arduino\tools\ESP8266LittleFS</strong></li>
+</ul>
+<h4 id="step-5-ssl-utility-to-work-with-certificates">Step 5 - SSL utility to work with certificates</h4>
+<p>During the workshop you will be generating your own self-signed certificates, so need the OpenSSL tooling installed.  Follow the instructions for your OS below:</p>
+<ul>
+<li>Linux : openssl is installed as part of the OS for most distros, so should have nothing to do here.  If it is not installed then most distros have an openssl package which can be installed using the distro package installer tool.</li>
+<li>MacOS : openssl is installed as part of the OS, so nothing to do here.</li>
+<li>Windows : There are 2 options for installing OpenSSL on Windows.  You can install a binary distribution to run on Windows or you can enable the Windows Subsystem for Linux, which provides a Linux environment within Windows:</li>
+<li><strong>Windows Binary</strong>: The openssl official website only provides source.  You can choose to build the binaries from source, but there are links to sites hosting prebuilt binaries, such as <a href="https://slproweb.com/products/Win32OpenSSL.html">this site</a> for 32 and 64 bit Windows.  You want to select one of the 1.1.x versions.  You only need light version for this workshop, but you can choose the full version if you want the additional developer resources.  When installing, the default install options are OK.  The standard install does <strong>NOT</strong> add the openssl executable to the system PATH, so you will need to specify the full path of the binary when entering commands, unless you add it to the PATH, e.g. <code>c:\OpenSSL-Win64\bin\openssl.exe</code>.  Note this method will not provide the xxd binary, but you don't need it for this workshop.  If you get an error saying <strong>MSVCR120.dll</strong> is missing, then you can download the Visual Studio 2013 redistibutable package <a href="https://support.microsoft.com/en-us/help/3179560">here</a>.</li>
+<li>
+<p><strong>Windows Subsystem for Linux</strong>:  This option installs a Linux distribution within Windows, so you get access to all the Linux utilities and can install additional packages, such as openssl. To enable Linux Services for windows follow the instructions <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">here</a>.  Select Debian as the Linux distribution, then when it is installed launch Debian then run the following commands at the Linux command prompt:</p>
+<p><code>bash
+sudo apt-get update ; sudo apt-get upgrade
+sudo apt-get install openssl</code></p>
+</li>
+</ul>
+<h2 id="ensure-you-have-a-working-ibm-cloud-account">Ensure you have a working IBM Cloud account</h2>
+<p>The workshop will use services hosted on the IBM Cloud, so you need to ensure you have a working account. If not you can sign up for free, without needing to input any credit card details, by following <a href="https://cloud.ibm.com"><strong>this</strong></a> link.  The workshop can be completed using the free, lite account.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
